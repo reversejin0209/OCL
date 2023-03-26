@@ -41,46 +41,7 @@ SELECT COUNT(*) CNT FROM STUDENT;
 DELETE FROM STUDENT WHERE SID = 'kim';
 COMMIT;
 
-------------------------------------------------------------------------------------
------------------------------   MEMBER 들어갈 query  ------------------------------
-------------------------------------------------------------------------------------
--- (1) 맴버 ID중복체크
-SELECT * FROM MEMBER;
-SELECT * FROM MEMBER WHERE MID ='aaa';
-
--- (2) 맴버 join
-INSERT INTO MEMBER (MID, MPW, MNAME, MNUMBER, MBIRTH, MEMAIL, MPHOTO, MGENDER, MADDRESS)
-VALUES ('kim', '11', '김창연', '010-8888-8904', '2012-03-09', 'NO.PNG','kim@chang.com', 'm', '안동시 금곡동');
-
--- (3) 맴버 LOGIN CHECK
-SELECT * FROM MEMBER WHERE  MID='kim' AND MPW=11;
-
--- (4) 맴버 SID로 MEMBER DTO 가져오기
-SELECT * FROM MEMBER WHERE SID='bbb';
-
--- (5) 맴버정보 수정
-UPDATE STUDENT
-    SET MPW = '11',
-        MNAME = '김민석',
-        MMAIL = 'kim@samsung.com', 
-        MBIRTH = '1995-03-03',
-        MADDRESS = '서울시 강서구'
-    WHERE MID = 'bbb';
-
--- (6) 맴버 리스트 보기(top - n)
-SELECT * FROM MEMBER ORDER BY MRDATE DESC;
-SELECT *
-    FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM MEMBER ORDER BY MRDATE DESC)A)
-    WHERE RN BETWEEN 5 AND 10;
-
--- (7) 맴버 등록된 회원 수
-SELECT COUNT(*) CNT FROM STUDENT;
-
--- (8) 회원 탈퇴
-DELETE FROM STUDENT WHERE SID = 'kim';
-COMMIT;
-
-------------------------------------------------------------------------------------
+------------------------------------------------------------------
 ------------------------------  TEACHER에 들어갈 query  ------------------------------
 ------------------------------------------------------------------------------------
 -- (1) TEACHER 로그인

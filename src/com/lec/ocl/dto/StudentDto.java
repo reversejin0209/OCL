@@ -1,5 +1,6 @@
 package com.lec.ocl.dto;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class StudentDto {
@@ -7,14 +8,14 @@ public class StudentDto {
 	private String spw;
 	private String sname;
 	private String snumber;
-	private Timestamp sbirth;
+	private Date sbirth;
 	private Timestamp srdate;
 	private String semail;
 	private String sphoto;
 	private String sgender;
 	private String saddress;
 	public StudentDto() {}
-	public StudentDto(String sid, String spw, String sname, String snumber, Timestamp sbirth, Timestamp srdate,
+	public StudentDto(String sid, String spw, String sname, String snumber, Date sbirth, Timestamp srdate,
 			String semail, String sphoto, String sgender, String saddress) {
 		this.sid = sid;
 		this.spw = spw;
@@ -27,7 +28,6 @@ public class StudentDto {
 		this.sgender = sgender;
 		this.saddress = saddress;
 	}
-	
 	public String getSid() {
 		return sid;
 	}
@@ -52,10 +52,10 @@ public class StudentDto {
 	public void setSnumber(String snumber) {
 		this.snumber = snumber;
 	}
-	public Timestamp getSbirth() {
+	public Date getSbirth() {
 		return sbirth;
 	}
-	public void setSbirth(Timestamp sbirth) {
+	public void setSbirth(Date sbirth) {
 		this.sbirth = sbirth;
 	}
 	public Timestamp getSrdate() {

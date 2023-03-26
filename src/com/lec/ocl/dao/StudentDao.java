@@ -40,7 +40,7 @@ public class StudentDao {
 		return conn;
 	}
 	// (1) 회원id 중복체크 
-	public int midConfirm(String sid) {
+	public int sidConfirm(String sid) {
 		int result = EXISTENT;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
@@ -70,7 +70,7 @@ public class StudentDao {
 		return result;
 	}
 	// (2) 이메일 중복체크
-	public int memailConfirm(String semail) {
+	public int semailConfirm(String semail) {
 		int result = EXISTENT;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
@@ -113,7 +113,7 @@ public class StudentDao {
 			pstmt.setString(2, Student.getSpw());
 			pstmt.setString(3, Student.getSname());
 			pstmt.setString(4, Student.getSnumber());
-			pstmt.setTimestamp(5, Student.getSbirth());
+			pstmt.setDate(5, Student.getSbirth());
 			pstmt.setString(6, Student.getSemail());
 			pstmt.setString(7, Student.getSphoto());
 			pstmt.setString(8, Student.getSgender());
@@ -163,7 +163,7 @@ public class StudentDao {
 		return result;
 	}
 	// (5) sid로 dto가져오기(로그인 성공시 session에 넣기 위함)
-	public StudentDto getMember(String sid) {
+	public StudentDto getStudent(String sid) {
 		StudentDto student = null;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
@@ -178,7 +178,7 @@ public class StudentDao {
 				String spw = rs.getString("spw");
 				String sname = rs.getString("sname");
 				String snumber = rs.getString("snumber");
-				Timestamp sbirth = rs.getTimestamp("sbirth");
+				Date sbirth = rs.getDate("sbirth");
 				Timestamp srdate = rs.getTimestamp("srdate");
 				String semail = rs.getString("semail");
 				String sphoto = rs.getString("sphoto");
@@ -219,7 +219,7 @@ public class StudentDao {
 			pstmt.setString(1, student.getSpw());
 			pstmt.setString(2, student.getSname());
 			pstmt.setString(3, student.getSnumber());
-			pstmt.setTimestamp(4, student.getSbirth());
+			pstmt.setDate(4, student.getSbirth());
 			pstmt.setString(5, student.getSemail());
 			pstmt.setString(6, student.getSphoto());
 			pstmt.setString(7, student.getSaddress());
@@ -257,7 +257,7 @@ public class StudentDao {
 				String spw = rs.getString("spw");
 				String sname = rs.getString("sname");
 				String snumber = rs.getString("snumber");
-				Timestamp sbirth = rs.getTimestamp("sbirth");
+				Date sbirth = rs.getDate("sbirth");
 				Timestamp srdate = rs.getTimestamp("srdate");
 				String semail = rs.getString("semail");
 				String sphoto = rs.getString("sphoto");

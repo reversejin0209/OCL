@@ -9,7 +9,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	footer {margin: 0px; padding: 0px;}
+	footer {
+		margin :-18px; 
+		padding:-21px;
+		width:100%-4px;
+		}
 	footer #footer_conts, footer #footer_conts a {
 		font-weight: blod;
 		font-size:0.9em;
@@ -17,15 +21,13 @@
 	}
 	footer #footer_menu {
 		background-color: #606060;
-		width: 100%;
 		height: 80px;
 		line-height: 80px;
 		min-width: 900px;
 	}
 	footer #footer_conts {
 		background-color: #f2f2f2;
-		width:100%;
-		height:200px;
+		height:250px;
 		min-width: 1000px;
 	}
 	footer a:link, a:visited, a:hover, a:active {
@@ -40,12 +42,11 @@
 	footer ul li a{
 		margin: 20px;
 	}
-	footer p {padding: 20px;}
+	footer p {padding: 20px; border-right: 1px solid gray;}
 </style>
 </head>
 <body>
 <footer>
-	<table width="100%">
   		<div id="footer_menu">
             <ul style="list-style: none;" >
                 <li><a href="https://map.naver.com/v5/search/%EC%96%91%EC%84%9C%EC%A4%91%ED%95%99%EA%B5%90?c=15,0,0,0,dh" target="_blank">찾아오시는 길</a></li>
@@ -55,6 +56,7 @@
             </ul>
    		</div>
 		<div id="footer_conts">
+				<br>
 				<address>
 				<p>
 					(우) 07912 서울특별시 양천구 남부순환로 380(신월동)<br/>
@@ -62,9 +64,8 @@
     			</p>
     			</address>
 				Copyright© 2023 by 우리초등학교. Allrights Reserved<br><br>
-				<b><img src="../img/selectImageView.png" alt="우리초등학교"></b>
+				<b><img src="${conPath }/img/selectImageView.png" alt="우리초등학교"></b>
 		</div>
-	</table>
 </footer>
 </body>
 </html>
