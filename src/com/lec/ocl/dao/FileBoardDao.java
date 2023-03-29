@@ -42,9 +42,12 @@ public class FileBoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT F.*," + "    (SELECT SNAME FROM STUDENT WHERE F.SID = SID)SNAME,"
-				+ "    (SELECT TNAME FROM TEACHER WHERE F.TID = TID)TNAME" + "    FROM (SELECT ROWNUM RN, B.*"
-				+ "        FROM (SELECT * FROM FILEBOARD ORDER BY FRDATE DESC) B)F" + "    WHERE RN BETWEEN ? AND ?";
+		String sql = "SELECT F.*," + 
+				"    (SELECT SNAME FROM STUDENT WHERE F.SID = SID)SNAME," + 
+				"    (SELECT TNAME FROM TEACHER WHERE F.TID = TID)TNAME" + 
+				"    FROM (SELECT ROWNUM RN, B.*" + 
+				"        FROM (SELECT * FROM FILEBOARD ORDER BY FGROUP DESC, FSTEP) B)F" + 
+				"    WHERE RN BETWEEN ? AND ?";
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -184,7 +187,8 @@ public class FileBoardDao {
 	private void hitUpBoard(int fno) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE FILEBOARD SET FHIT = FHIT +1" + "    WHERE FNO = ?";
+		String sql = "UPDATE FILEBOARD SET FHIT = FHIT +1" + 
+				"    WHERE FNO = ?";
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -211,9 +215,12 @@ public class FileBoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT F.*," + "    (SELECT SNAME FROM STUDENT WHERE F.SID = SID)SNAME,"
-				+ "    (SELECT TNAME FROM TEACHER WHERE F.TID = TID)TNAME" + "    FROM (SELECT ROWNUM RN, B.*"
-				+ "        FROM (SELECT * FROM FILEBOARD ORDER BY FRDATE DESC) B)F" + "    WHERE FNO=?";
+		String sql = "SELECT F.*," + 
+				"    (SELECT SNAME FROM STUDENT WHERE F.SID = SID)SNAME," + 
+				"    (SELECT TNAME FROM TEACHER WHERE F.TID = TID)TNAME" + 
+				"    FROM (SELECT ROWNUM RN, B.*" + 
+				"        FROM (SELECT * FROM FILEBOARD ORDER BY FRDATE DESC) B)F" + 
+				"    WHERE FNO=?";
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -307,10 +314,10 @@ public class FileBoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE FILEBOARD " + 
-				"    SET FTITLE = ?" + 
-				"        FCONTENT = ?" + 
-				"        Ffilename = ?" + 
-				"        FIP = ?" + 
+				"    SET FTITLE = ?," + 
+				"        FCONTENT = ?," + 
+				"        Ffilename = ?," + 
+				"        FIP = ?," + 
 				"        FRDATE = SYSDATE" + 
 				"    WHERE FNO = ?";
 		try {
@@ -322,7 +329,7 @@ public class FileBoardDao {
 			pstmt.setString(4, dto.getFip());
 			pstmt.setInt(5, dto.getFno());
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "글수정 성공" : "글번호(bid) 오류");
+			System.out.println(result == SUCCESS ? "글수정 성공" : "글번호(fno) 오류");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + "글 수정 실패 ");
 		} finally {
@@ -372,15 +379,15 @@ public class FileBoardDao {
 	}
 
 	// (9) 게시판 답변글 저장전 작업
-	private void preReplyBoardStep(int bgroup, int bstep) {
+	private void preReplyBoardStep(int fgroup, int fstep) {
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE FILEBOARD SET FSTEP = FSTEP + 1 WHERE FGROUP=? AND FSTEP>?";
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bgroup);
-			pstmt.setInt(2, bstep);
+			pstmt.setInt(1, fgroup);
+			pstmt.setInt(2, fstep);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + " preReplyStep에서 오류");

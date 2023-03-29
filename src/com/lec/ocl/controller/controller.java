@@ -9,9 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lec.ocl.service.FileBoardContentService;
+import com.lec.ocl.service.FileBoardDeleteService;
+import com.lec.ocl.service.FileBoardListService;
+import com.lec.ocl.service.FileBoardModifyService;
+import com.lec.ocl.service.FileBoardModifyViewService;
+import com.lec.ocl.service.FileBoardReplyService;
+import com.lec.ocl.service.FileBoardReplyViewService;
+import com.lec.ocl.service.FileBoardWriteService;
 import com.lec.ocl.service.SJoinService;
 import com.lec.ocl.service.SLoginService;
 import com.lec.ocl.service.SLogoutService;
+import com.lec.ocl.service.SModifyService;
 import com.lec.ocl.service.SemailConfirmService;
 import com.lec.ocl.service.Service;
 import com.lec.ocl.service.SidConfirmService;
@@ -64,8 +73,50 @@ public class controller extends HttpServlet {
 			service = new SLogoutService();
 			service.execute(request, response);
 			viewPage = "main/main.jsp";
+		}else if(command.equals("/modifyView.do")) {
+			service = new SModifyService();
+			service.execute(request, response);
+			viewPage = "Student/modify.jsp";	
+		}
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * 
+		 * * * * * * * * * * FileBoard 관련 요청 * * * * * * * * * 
+		 * * * * * * * * * * * * * * * * * * * * * * * * * * */
+		else if(command.equals("/FileBoardList.do")) {// 게시판 - 
+			service = new FileBoardListService();
+			service.execute(request, response);
+			viewPage = "fileBoard/FileBoardList.jsp";
+		}else if(command.equals("/FileBoardWriteView.do")) {
+			viewPage = "fileBoard/FileBoardWrite.jsp";
+		}else if(command.equals("/FileBoardWrite.do")) {
+			service = new FileBoardWriteService();
+			service.execute(request, response);
+			viewPage = "FileBoardList.do";
+		}else if(command.equals("/FileBoardContent.do")) {
+			service = new FileBoardContentService();
+			service.execute(request, response);
+			viewPage = "fileBoard/FileBoardContent.jsp";
+		}else if(command.equals("/FileBoardModifyView.do")) {
+			service = new FileBoardModifyViewService();
+			service.execute(request, response);
+			viewPage = "fileBoard/FileBoardModify.jsp";
+		}else if(command.equals("/FileBoardModify.do")) {
+			service = new FileBoardModifyService();
+			service.execute(request, response);
+			viewPage = "FileBoardList.do";
+		}else if(command.equals("/FileBoardDelete.do")) {
+			service = new FileBoardDeleteService();
+			service.execute(request, response);
+			viewPage = "FileBoardList.do";
+		}else if(command.equals("/FileBoardReplyView.do")) {
+			service = new FileBoardReplyViewService();
+			service.execute(request, response);
+			viewPage = "fileBoard/FileBoardReplyView.jsp";
+		}else if(command.equals("/FileBoardReply.do")) {
+			service = new FileBoardReplyService();
+			service.execute(request, response);
+			viewPage = "FileBoardList.do";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
+		}
 	}
-}
