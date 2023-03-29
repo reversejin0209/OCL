@@ -51,7 +51,7 @@
             <ul style="list-style: none;" >
                 <li><a href="https://map.naver.com/v5/search/%EC%96%91%EC%84%9C%EC%A4%91%ED%95%99%EA%B5%90?c=15,0,0,0,dh" target="_blank">찾아오시는 길</a></li>
                 <li><a href="https://copy112.kcopa.or.kr/"target="_blank">저작권신고</a></li>
-                <li><a href="https://yangseo.sen.ms.krdggb/module/policy/selectPolicyDetail.do?policyTypeCode=PLC003&menuNo=74145" target="_blank">서비스이용약관</a></li>
+                <li><a href="https://yangseo.sen.ms.kr/dggb/module/policy/selectPolicyDetail.do?policyTypeCode=PLC003&menuNo=74145" target="_blank">서비스이용약관</a></li>
                 <li><a href="https://www.moe.go.kr/sub/infoRenew.do?m=070102&page=070102&s=moe" target="_blank">개인정보처리방침</a></li>
             </ul>
    		</div>

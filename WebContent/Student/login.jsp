@@ -28,7 +28,7 @@
 			history.back();
 		</script>
 	</c:if>
-	<c:if test="${not empty student }">
+	<c:if test="${not empty student and teacher}">
 		<script>
 			alert('이미 로그인 상태입니다');
 			history.back();

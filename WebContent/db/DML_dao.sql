@@ -3,7 +3,7 @@
 ------------------------------------------------------------------------------------
 -- (1) 회원 ID중복체크
 SELECT * FROM STUDENT WHERE SID ='aaa';
-
+SELECT * FROM STUDENT;
 -- (2) 회원 email중복체크
 SELECT * FROM STUDENT WHERE SEMAIL = 'kim@kim.com';
 
@@ -54,15 +54,19 @@ COMMIT;
 ------------------------------------------------------------------------------------
 -----------------------------  FILEBOARD에 들어갈 query  -----------------------------
 ------------------------------------------------------------------------------------
-SELECT * FROM FILEBOARD;
+SELECT * FROM FILEBOARD ORDER BY FNO DESC;
 -- (1) 게시판 글목록
+SELECT * 
+    FROM (SELECT ROWNUM RN, A.* FROM (SELECT F.*, MNAME FROM FILEBOARD F, MVC_MEMBER M
+    WHERE F.MID=M.MID ORDER BY FGROUP DESC, FSTEP) A)
+     WHERE RN BETWEEN 2 AND 4;
 SELECT F.*,
     (SELECT SNAME FROM STUDENT WHERE F.SID = SID)SNAME,
     (SELECT TNAME FROM TEACHER WHERE F.TID = TID)TNAME
     FROM (SELECT ROWNUM RN, B.*
-        FROM (SELECT * FROM FILEBOARD ORDER BY FRDATE DESC) B)F
-    WHERE RN BETWEEN 2 AND 4;
-    
+        FROM (SELECT * FROM FILEBOARD ORDER BY FGROUP DESC, FSTEP) B)F
+    WHERE RN BETWEEN 1 AND 7;
+    SELECT * FROM FILEBOARD ORDER BY FGROUP DESC, FSTEP;
 -- (2) 게시판 글갯수
 SELECT COUNT(*) FROM FILEBOARD;
 
@@ -77,7 +81,7 @@ INSERT INTO FILEBOARD(FNO, SID, FTITLE, FCONTENT, FFILENAME, fGROUP, FSTEP, FIND
 
 -- (4) 게시판 hit 1회 올리기
 UPDATE FILEBOARD SET FHIT = FHIT +1
-    WHERE FNO = '2';
+    WHERE FNO = '183';
 SELECT * FROM FILEBOARD;
 
 -- (5) 게시판 글번호(FNO)로 글 전체 내용 (BoardDto)가져오기
@@ -86,7 +90,7 @@ SELECT F.*,
     (SELECT TNAME FROM TEACHER WHERE F.TID = TID)TNAME
     FROM (SELECT ROWNUM RN, B.*
         FROM (SELECT * FROM FILEBOARD ORDER BY FRDATE DESC) B)F
-    WHERE FNO='7';
+    WHERE FNO='183';
 
 -- (6) 게시판 글 수정하기
 UPDATE FILEBOARD 
@@ -95,7 +99,7 @@ UPDATE FILEBOARD
         Ffilename = 'NO.IMG',
         FIP = '163.1.1.1',
         FRDATE = SYSDATE
-    WHERE FNO = '1';
+    WHERE FNO = '170';
 SELECT * FROM FILEBOARD;
 
 -- (7) 게시판 글 삭제하기(메인글을 지우면 모든 답변까지 삭제됨)
@@ -104,12 +108,12 @@ DELETE FROM FILEBOARD WHERE FGROUP=2 AND (FSTEP>=0 AND
   FSTEP<(SELECT NVL(MIN(FSTEP),99999) FROM FILEBOARD WHERE FGROUP=0 AND FSTEP>0 AND FINDENT<=0));
 -- (8) 게시판 답변글 저장전 작업
 UPDATE FILEBOARD SET FSTEP = FSTEP + 1
-    WHERE FGROUP = 3 AND FSTEP >0;
-    
+    WHERE FGROUP = 183 AND FSTEP >0;
+COMMIT;
 -- (9) 게시판 답변글 쓰기
 SELECT * FROM FILEBOARD WHERE FNO = 3;
 INSERT INTO FILEBOARD(FNO, SID, TID, FTITLE, FCONTENT, FFILENAME, FGROUP, FSTEP, FINDENT, FIP)
-    VALUES(FILEBOARD_SEQ.NEXTVAL, 'hhh', null,'감사합니다', '잘부탁드립니다', 'no.png', 3, 1, 1, '192.1.1.1');
+    VALUES(FILEBOARD_SEQ.NEXTVAL, 'hhh', null,'감사합니다', '잘부탁드립니다', 'no.png', 183, 1, 1, '192.1.1.1');
 -- (9-1)게시판 답변글 확인용
 SELECT * FROM FILEBOARD ORDER BY FGROUP DESC, FSTEP;
 

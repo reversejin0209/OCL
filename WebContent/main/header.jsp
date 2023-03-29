@@ -15,7 +15,6 @@
 		min-width: 900px;
 		font-size: 15px;
 		width: 100%-4px;
-		height: 300px;
 		background-color: #fbf4e5;
 	}
 	
@@ -201,7 +200,7 @@
 				<nav class="header_nav">
 					<ul>
 						<li><a href="${conPath }/main.do">홈페이지</a></li>
-						<li><a href="${conPath }/logout.do">정보수정</a></li>
+						<li><a href="${conPath }/modifyView.do">정보수정</a></li>
 						<li><a href="${conPath }/logout.do">로그아웃</a></li>
 						<li><a> ${student.sname }님 <br> 환영합니다!
 						</a></li>
@@ -241,13 +240,13 @@
 				</ul>
 			</div>
 		</c:if>
-		<c:if test="${empty member and not empty admin}">
+		<c:if test="${empty student and not empty teacher}">
 			<%-- 관리자 모드 로그인 화면--%>
 			<div class="gnb">
 				<ul>
-					<li><a href="${conPath }/boardList.do">고객센터</a></li>
+					<li><a href="${conPath }/AllView.do">전체회원조회</a></li>
 					<li><a href="${conPath }/logout.do">관리자모드나가기</a></li>
-					<li><a>${admin.aname }님 &nbsp; ▶</a></li>
+					<li><a>${teacher.tname }님 &nbsp; ▶</a></li>
 				</ul>
 			</div>
 		</c:if>
