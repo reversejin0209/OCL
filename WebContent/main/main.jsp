@@ -201,7 +201,7 @@
 					<!-- 포토갤러리 -->
 					<div class="gallery">
 						<h2>학급앨범</h2>
-						<!-- 								<table>
+						<!-- <table>
 									<tr>
 										tr
 										<th>th</th>
@@ -211,7 +211,7 @@
 										<td>td</td>
 									</tr>
 								</table> -->
-						<a href="${conPath }/Gallery/Gallery.jsp" class="btn_more"
+						<a href="${conPath }/Gallery/GalleryList.do" class="btn_more"
 							title="더보기">더보기</a>
 					</div>
 					<!-- class : gallery -->
