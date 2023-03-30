@@ -439,7 +439,7 @@ public class FileBoardDao {
 			return result;
 		}
 	// (11) 회원 탈퇴시 발생하는 SID가 쓴 글 모두 삭제
-		public int preWithdrawalMemberStep(String sid) {
+		public int preWithdrawalStudentStep(String sid) {
 			int cntBoard = 0;
 			Connection        conn  = null;
 			PreparedStatement pstmt = null;

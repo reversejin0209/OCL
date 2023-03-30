@@ -36,21 +36,7 @@ public class SModifyService implements Service {
 			// 파라미터 받아 DB에 수정 적용
 			String dbSpw = mRequest.getParameter("dbSpw");
 			String dbSphoto = mRequest.getParameter("dbSphoto");
-			// hidden으로 넘어온 dbMpw, dbMphoto가 없을 경우
-//			HttpSession session = request.getSession();
-//			String sessionMpw=null, sessionMphoto=null;
-//			MemberDto sesionMember = (MemberDto)session.getAttribute("member");
-//			if(member!=null) {
-//				sessionMpw = sesionMember.getMpw();
-//				sessionMphoto = sesionMember.getMphoto();
-//			}
 			String sid      = mRequest.getParameter("sid");
-			// oldMpw는 modify.jsp에서 함
-//			String oldMpw   = mRequest.getParameter("oldMpw");
-//			if(!oldMpw.equals(dbMpw)) {
-//				request.setAttribute("modifyErrorMsg", "현비밀번호를 확인하세요");
-//				return;
-//			}
 			String spw = mRequest.getParameter("spw");
 			if(spw.equals("")) { // 정보 수정시 새비밀번호를 입력하지 않을 경우, 현비밀번호(dbMpw)로 
 				spw = dbSpw;
@@ -63,7 +49,7 @@ public class SModifyService implements Service {
 				sbirth = Date.valueOf(sbirthStr);
 			}
 			String semail = mRequest.getParameter("semail");
-			// 정보 수정시 사진첨부 안 하면, 기존의 사진(dbMphoto)으로
+			// 정보 수정시 사진첨부 안 하면, 기존의 사진(dbSphoto)으로
 			sphoto = sphoto==null? dbSphoto : sphoto;
 			String sgender = mRequest.getParameter("sgender");
 			String saddress = mRequest.getParameter("saddress");
@@ -88,7 +74,6 @@ public class SModifyService implements Service {
 			OutputStream os = null;
 			try {
 				is = new FileInputStream(serverFile);
-				//os = new FileOutputStream("D:/webPro/source/07_jQuery/model2ex/WebContent/studentPhotoUp/"+sphoto);
 				os = new FileOutputStream("D:/JINYOONJIN/source/08_1stProject/ocl/WebContent/studentPhotoUp/"+sphoto);
 				byte[] bs = new byte[(int)serverFile.length()];
 				while(true) {

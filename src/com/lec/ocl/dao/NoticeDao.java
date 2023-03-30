@@ -47,7 +47,7 @@ public class NoticeDao {
 			pstmt.setString(1, dto.getTid());
 			pstmt.setString(2, dto.getNtitle());
 			pstmt.setString(3, dto.getNcontent());
-			pstmt.setString(5, dto.getNip());
+			pstmt.setString(4, dto.getNip());
 			pstmt.executeUpdate();
 			result = SUCCESS;
 			System.out.println("공지사항쓰기 성공");
@@ -75,7 +75,7 @@ public class NoticeDao {
 				"    (SELECT SNAME FROM STUDENT WHERE N.SID = SID)SNAME," + 
 				"    (SELECT TNAME FROM TEACHER WHERE N.TID = TID)TNAME" + 
 				"    FROM (SELECT ROWNUM RN, B.*" + 
-				"        FROM (SELECT * FROM NOTICE ORDER BY NRDATE DESC) B)N" + 
+				"        FROM (SELECT * FROM NOTICE ORDER BY NNO DESC) B)N" + 
 				"    WHERE RN BETWEEN ? AND ?";
 		try {
 			conn = ds.getConnection();
@@ -86,6 +86,7 @@ public class NoticeDao {
 			while (rs.next()) {
 				int nno = rs.getInt("nno");
 				String sid = rs.getString("sid");
+				String sname = rs.getString("sname");
 				String tid = rs.getString("tid");
 				String tname = rs.getString("tname");
 				String ntitle = rs.getString("ntitle");
@@ -93,7 +94,7 @@ public class NoticeDao {
 				Timestamp nrdate = rs.getTimestamp("nrdate");
 				int nhit = rs.getInt("nhit");
 				String nip = rs.getString("nip");
-				dtos.add(new NoticeDto(nno, sid, tid, tname, ntitle, ncontent, nrdate, nhit, nip));
+				dtos.add(new NoticeDto(nno, sid, sname, tid, tname, ntitle, ncontent, nrdate, nhit, nip));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + " listNotice에서 오류");
@@ -186,6 +187,7 @@ public class NoticeDao {
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
 					String sid = rs.getString("sid");
+					String sname = rs.getString("sname");
 					String tid = rs.getString("tid");
 					String tname = rs.getString("tname");
 					String ntitle = rs.getString("ntitle");
@@ -193,7 +195,7 @@ public class NoticeDao {
 					Timestamp nrdate = rs.getTimestamp("nrdate");
 					int nhit = rs.getInt("nhit");
 					String nip = rs.getString("nip");
-					dto = new NoticeDto(nno, sid, tid, tname, ntitle, ncontent, nrdate, nhit, nip);
+					dto = new NoticeDto(nno, sid, sname, tid, tname, ntitle, ncontent, nrdate, nhit, nip);
 				}
 			} catch (SQLException e) {	
 				System.out.println(e.getMessage() + " modifyViewGallerys에서 오류");
@@ -215,7 +217,6 @@ public class NoticeDao {
 	// (6) 공지사항번호(NNO)로 글 전체 내용 (NoticeDto)가져오기 - 공지사항수정VIEW
 	public NoticeDto modifyViewNotice(int nno) {
 		NoticeDto dto = null;
-		hitUpNotice(nno); // 공지 상세보기 시 조회수 1 올리기
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -232,6 +233,7 @@ public class NoticeDao {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				String sid = rs.getString("sid");
+				String sname = rs.getString("sname");
 				String tid = rs.getString("tid");
 				String tname = rs.getString("tname");
 				String ntitle = rs.getString("ntitle");
@@ -239,7 +241,7 @@ public class NoticeDao {
 				Timestamp nrdate = rs.getTimestamp("nrdate");
 				int nhit = rs.getInt("nhit");
 				String nip = rs.getString("nip");
-				dto = new NoticeDto(nno, sid, tid, tname, ntitle, ncontent, nrdate, nhit, nip);
+				dto = new NoticeDto(nno, sid, sname, tid, tname, ntitle, ncontent, nrdate, nhit, nip);
 			}
 		} catch (SQLException e) {	
 			System.out.println(e.getMessage() + " modifyViewGallerys에서 오류");
@@ -296,7 +298,7 @@ public class NoticeDao {
 		int result = FAIL;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "DELETE FROM NOTICE WHERE NNO=?";
+		String sql = "DELETE FROM NOTICE WHERE NNO=?";		
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);

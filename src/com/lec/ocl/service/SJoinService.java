@@ -22,8 +22,8 @@ public class SJoinService implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		String path = request.getRealPath("img");
-		int maxSize = 1024*1024; // 사진 업로드 제한 용량 : 1M
+		String path = request.getRealPath("fileBoardUp");
+		int maxSize = 1024*1024*10; // 사진 업로드 제한 용량 : 10M
 		String sphoto = ""; // 첨부된 파일이 저장된 파일 이름
 		// mRequest 객체 생성 후 sPhoto 파일이름 얻어옴
 		MultipartRequest mRequest = null;
@@ -80,8 +80,7 @@ public class SJoinService implements Service {
 			OutputStream os = null;
 			try {
 				is = new FileInputStream(serverFile);
-				/*os = new FileOutputStream("D:/webPro/source/07_jQuery/model2ex/WebContent/memberPhotoUp/"+sphoto);*/
-				os = new FileOutputStream("C:/webPro/08_1stProject/ch08_1stProject/WebContent/img/"+sphoto);
+				os = new FileOutputStream("D:/JINYOONJIN/source/08_1stProject/ch08_1stProject/WebContent/fileBoardUp/"+sphoto);
 				byte[] bs = new byte[(int) serverFile.length()];
 				while(true) {
 					int readByteCnt = is.read(bs);

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class GalleryDto {
 	private int gno;
 	private String sid;
+	private String sname;
 	private String tid;
 	private String tname;
 	private String gtitle;
@@ -14,10 +15,11 @@ public class GalleryDto {
 	private int ghit;
 	private String gip;
 	public GalleryDto() {}
-	public GalleryDto(int gno, String sid, String tid, String tname, String gtitle, String gcontent, String gfileName,
-			Timestamp grdate, int ghit, String gip) {
+	public GalleryDto(int gno, String sid, String sname, String tid, String tname, String gtitle, String gcontent,
+			String gfileName, Timestamp grdate, int ghit, String gip) {
 		this.gno = gno;
 		this.sid = sid;
+		this.sname = sname;
 		this.tid = tid;
 		this.tname = tname;
 		this.gtitle = gtitle;
@@ -38,6 +40,12 @@ public class GalleryDto {
 	}
 	public void setSid(String sid) {
 		this.sid = sid;
+	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
 	}
 	public String getTid() {
 		return tid;
@@ -89,9 +97,9 @@ public class GalleryDto {
 	}
 	@Override
 	public String toString() {
-		return "GalleryDto [gno=" + gno + ", sid=" + sid + ", tid=" + tid + ", tname=" + tname + ", gtitle=" + gtitle
-				+ ", gcontent=" + gcontent + ", gfileName=" + gfileName + ", grdate=" + grdate + ", ghit=" + ghit
-				+ ", gip=" + gip + "]";
+		return "GalleryDto [gno=" + gno + ", sid=" + sid + ", sname=" + sname + ", tid=" + tid + ", tname=" + tname
+				+ ", gtitle=" + gtitle + ", gcontent=" + gcontent + ", gfileName=" + gfileName + ", grdate=" + grdate
+				+ ", ghit=" + ghit + ", gip=" + gip + "]";
 	}
 	
 }

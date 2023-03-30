@@ -86,6 +86,7 @@ public class GalleryDao {
 			while (rs.next()) {
 				int gno = rs.getInt("gno");
 				String sid = rs.getString("sid");
+				String sname = rs.getString("sname");
 				String tid = rs.getString("tid");
 				String tname = rs.getString("tname");
 				String gtitle = rs.getString("gtitle");
@@ -94,7 +95,7 @@ public class GalleryDao {
 				Timestamp grdate = rs.getTimestamp("grdate");
 				int ghit = rs.getInt("ghit");
 				String gip = rs.getString("gip");
-				dtos.add(new GalleryDto(gno, sid, tid, tname, gtitle, gcontent, gfileName, grdate, ghit, gip));
+				dtos.add(new GalleryDto(gno, sid, sname, tid, tname, gtitle, gcontent, gfileName, grdate, ghit, gip));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + " listGallery에서 오류");
@@ -187,6 +188,7 @@ public class GalleryDao {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				String sid = rs.getString("sid");
+				String sname = rs.getString("sname");
 				String tid = rs.getString("tid");
 				String tname = rs.getString("tname");
 				String gtitle = rs.getString("gtitle");
@@ -195,7 +197,7 @@ public class GalleryDao {
 				Timestamp grdate = rs.getTimestamp("grdate");
 				int ghit = rs.getInt("ghit");
 				String gip = rs.getString("gip");
-				dto = new GalleryDto(gno, sid, tid, tname, gtitle, gcontent, gfileName, grdate, ghit, gip);
+				dto = new GalleryDto(gno, sid, sname, tid, tname, gtitle, gcontent, gfileName, grdate, ghit, gip);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + " contentGallery에서 오류");
@@ -234,6 +236,7 @@ public class GalleryDao {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				String sid = rs.getString("sid");
+				String sname = rs.getString("sname");
 				String tid = rs.getString("tid");
 				String tname = rs.getString("tname");
 				String gtitle = rs.getString("gtitle");
@@ -242,7 +245,7 @@ public class GalleryDao {
 				Timestamp grdate = rs.getTimestamp("grdate");
 				int ghit = rs.getInt("ghit");
 				String gip = rs.getString("gip");
-				dto = new GalleryDto(gno, sid, tid, tname, gtitle, gcontent, gfileName, grdate, ghit, gip);
+				dto = new GalleryDto(gno, sid, sname, tid, tname, gtitle, gcontent, gfileName, grdate, ghit, gip);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + " modifyViewGallerys에서 오류");

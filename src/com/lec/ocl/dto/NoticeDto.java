@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class NoticeDto {
 	private int nno;
 	private String sid;
+	private String sname;
 	private String tid;
 	private String tname;
 	private String ntitle;
@@ -13,10 +14,11 @@ public class NoticeDto {
 	private int nhit;
 	private String nip;
 	public NoticeDto() {}
-	public NoticeDto(int nno, String sid, String tid, String tname, String ntitle, String ncontent, Timestamp nrdate,
-			int nhit, String nip) {
+	public NoticeDto(int nno, String sid, String sname, String tid, String tname, String ntitle, String ncontent,
+			Timestamp nrdate, int nhit, String nip) {
 		this.nno = nno;
 		this.sid = sid;
+		this.sname = sname;
 		this.tid = tid;
 		this.tname = tname;
 		this.ntitle = ntitle;
@@ -36,6 +38,12 @@ public class NoticeDto {
 	}
 	public void setSid(String sid) {
 		this.sid = sid;
+	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
 	}
 	public String getTid() {
 		return tid;
@@ -81,8 +89,9 @@ public class NoticeDto {
 	}
 	@Override
 	public String toString() {
-		return "NoticeDto [nno=" + nno + ", sid=" + sid + ", tid=" + tid + ", tname=" + tname + ", ntitle=" + ntitle
-				+ ", ncontent=" + ncontent + ", nrdate=" + nrdate + ", nhit=" + nhit + ", nip=" + nip + "]";
+		return "NoticeDto [nno=" + nno + ", sid=" + sid + ", sname=" + sname + ", tid=" + tid + ", tname=" + tname
+				+ ", ntitle=" + ntitle + ", ncontent=" + ncontent + ", nrdate=" + nrdate + ", nhit=" + nhit + ", nip="
+				+ nip + "]";
 	}
 	
 }

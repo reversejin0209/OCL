@@ -55,7 +55,7 @@ public class TeacherDao {
 		return result;
 	}
 	// (2) 로그인 후 세션에 넣을 용도 : admin aid로 dto 가져오기
-	public TeacherDto getAdmin(String tid) {
+	public TeacherDto getTeacher(String tid) {
 		TeacherDto Teacher = null;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
