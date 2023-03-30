@@ -8,24 +8,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath}/css/css.css" rel="stylesheet">
+	<link href="${conPath }/css/css.css" rel="stylesheet">
 	<style>
-		body {background-color: #fbf4e5;}
+		body{background-color: #fbf4e5;}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 </head>
 <jsp:include page="../main/header.jsp"/>
 <body>
-<%--  	<c:if test="${empty student or empty teacher}">
+<%-- <c:if test="${empty student or empty teacher }">
 		<script>
-			location.href='${conPath}/logeinView.do?next=FileboardWriteView.do';
+			location.href='${conPath}/logeinView.do?next=NoticeWriteView.do';
 		</script>
 	</c:if> --%>
-	<form action="${conPath }/FileBoardWrite.do" method="post" enctype="multipart/form-data">
+	<form action="${conPath }/NoticeWrite.do" method="post">
 	    <div class="board_wrap">
 	        <div class="board_title">
-	            <strong>학급게시판 글등록</strong>
-	            <p>게시판 내용을 입력해주세요</p>
+	            <strong>공지사항 등록</strong>
+	            <p>공지하실 내용을 입력해주세요</p>
 	        </div>
 	        <div class="board_write_wrap">
 	            <div class="board_write">
@@ -33,25 +33,20 @@
 	                    <dl>
 	                        <dt>제목</dt>
 	                        <dd>
-	                        	<input type="text" name="ftitle" required="required" placeholder="제목 입력">
+	                        	<input type="text" name="ntitle" required="required" value="[월일()알림장]">
 	                        </dd>
 	                    </dl>
 	                </div>
-	                <div class="info">
-	                    <dl>
-	                        <dt>첨부파일</dt>
-	                        <dd><input type="file" name="ffileName"></dd>
-	                    </dl>
-	                </div>
 	                <div class="cont">
-	                    <textarea name="fcontent" placeholder="내용 입력"></textarea>
+	                    <textarea name="ncontent" placeholder="내용 입력" ></textarea>
 	                </div>
 	            </div>
 	            <div class="bt_wrap">
-	            	<input type="submit" value="글쓰기" class="on">
-	            	<input type="reset" value="초기화">
-	            	<input type="button" value="목록"
-		            	onclick="location.href='${conPath}/FileBoardList.do'">
+	            	<input type="submit" value="알림장등록" class="on">
+	            	<input type="reset" value="다시쓰기">
+	            	<input type="button" value="목록으로"
+		            	onclick="location.href='${conPath}/NoticeList.do'"
+																NoticeList>
 	            </div>
 	        </div>
 	    </div>

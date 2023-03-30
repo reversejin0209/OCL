@@ -8,19 +8,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath }/css/style.css" rel="stylesheet">
-	<style>
-		#content_form {
-				height:400px; 
-				margin: 20px auto 80px;
-		}
-	</style>
+	<link href="${conPath }/css/login.css" rel="stylesheet">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script>
   	$(function(){
-  		// macth함수 사용
   		var patternSemail = /^[a-zA-Z0-9_\.]+@[a-zA-Z0-9_]+(\.\w+){1,2}$/;
   		$('input[name="semail"]').keyup(function(){
   			let semail = $(this).val();
@@ -42,7 +35,6 @@
   		});
   		
   		$('form').submit(function(){
-  			// 현비밀번호확인과 사용불가한 중복된 메일일 경우 submit 제한
   			var oldSpw = $('input[name="oldSpw"]').val();
   			var semailConfirmResult = $('#semailConfirmResult').text().trim();
   			if(oldSpw != '${student.spw}'){
@@ -57,8 +49,8 @@
   			}
   		});
   	});
-  </script>
-  <script>
+</script>
+<script>
   $( function() {
     $( "#datepicker" ).datepicker({
     	dateFormat: "yy-mm-dd",
@@ -75,83 +67,87 @@
     	yearRange: 'c-100:c+10', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 
     });
   } );
-  </script>
+</script>
+<style>
+	.login-wrap{min-height:700px;}
+</style>
 </head>
 <body>
-	<c:if test="${empty student }">
-		<script>location.href='${conPath}/loginView.do?next=modifyView.do';</script>
-	</c:if>
-	<jsp:include page="../main/header.jsp"/>
-	<div id="content_form">
-		<form action="${conPath }/modify.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="dbSpw" value="${student.spw }">
-			<input type="hidden" name="dbSphoto" value="${student.sphoto }">
-			<table>
-				<caption>정보수정</caption>
-				<tr>
-					<th>아이디</th>
-					<td>
-						<input type="text" name="sid" value="${student.sid }" readonly="readonly" size="3">
-					</td>
-					<td rowspan="4">
-						<img src="${conPath }/studentPhotoUp/${student.sphoto}"
-								 alt="${student.sname }사진">
-					</td>
-				</tr>
-				<tr>
-					<th>현비밀번호</th>
-					<td>
-						<input type="password" name="oldSpw">
-					 </td>
-				</tr>
-				<tr>
-					<th>새비밀번호</th>
-					<td><input type="password" name="spw" size="3"></td>
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td>
-						<input type="text" name="sname" value="${student.sname }" required="required" size="3">
-					</td>
-				</tr>
-				<tr>
-					<th>메일</th>
-					<td colspan="2">
-						<input type="email" name="semail" value="${student.semail }">
-						<div id="semailConfirmResult"> &nbsp; </div>
-					</td>
-				</tr>
-				<tr>
-					<th>사진</th>
-					<td colspan="2">
-						<input type="file" name="sphoto">
-					</td>
-				</tr>
-				<tr>
-					<th>생년월일</th>
-					<td colspan="2">
-						<input type="text" name="sbirth" value="${student.sbirth }"
-							id="datepicker">
-					</td>
-				</tr>
-				<tr>
-					<th>주소</th>
-					<td colspan="2">
-						<input type="text" name="saddress" value="${student.saddress }">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						<input type="submit" value="정보수정" class="btn">
-						<input type="reset" value="초기화" class="btn">
-						<input type="reset" value="이전" onclick="history.back()" class="btn">
-						<input type="button" value="회원탈퇴" class="btn"
-							onclick="location.href='${conPath}/withdrawal.do'">
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
+<c:if test="${empty student }">
+	<script>location.href='${conPath}/loginView.do?next=modifyView.do';</script>
+</c:if>
+	<form action="${conPath }/modify.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="dbSpw" value="${student.spw }">
+		<input type="hidden" name="dbSphoto" value="${student.sphoto }">
+ <a href="${conPath }/main.do"><img src="${conPath }/img/nomalocl.png" alt="OCL마크"></a>
+		<div class="login-wrap">
+			<div class="login-html">
+				<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label
+					for="tab-1" class="tab">회원정보수정(1)</label> <input id="tab-2"
+					type="radio" name="tab" class="sign-up"><label for="tab-2"
+					class="tab">회원정보수정(2)</label>
+				<div class="login-form">
+					<div class="sign-in-htm">
+						<div class="group">
+							<label for="user" class="label">아이디</label> 
+								<input type="text" id="user" class="input" name="sid" value="${student.sid }" 
+								readonly="readonly" size="3">
+							<label for="user" class="label">사진</label> 
+								<img src="${conPath }/studentPhotoUp/${student.sphoto}" alt="${student.sname }사진">
+						</div>
+						<div class="group">
+							<label for="pass" class="label">현비밀번호</label> 
+								<input id="pass" type="password" name="oldSpw" class="input" data-type="password">
+						</div>
+						<div class="group">
+							<label for="pass" class="label">새비밀번호</label>
+								<input id="pass" type="password" name="spw" class="input" 
+										data-type="password" >
+						</div>
+						<div class="group">
+							<label for="user" class="label">이름</label> 
+							<input id="user" type="text" name="sname" class="input" required="required" value="${student.sname }" >
+						</div>
+						<div class="group">
+							<label for="user" class="label">전화번호</label> 
+							<input id="user" type="text" name="snumber" class="input"  value="${student.snumber }">
+						</div>
+						<div class="group">
+							<input type="button" class="button" value="정보수정(2를)눌러주세요">
+						</div>
+						<div class="hr"></div>
+					</div>
+					<div class="sign-up-htm">
+						<div class="group"> 
+							<label for="user" class="label">생년월일</label> 
+								<input id="datepicker" type="text" name="sbirth" class="input" 
+										value="${student.sbirth }">
+						</div>
+						<div class="group">
+							<label for="user" class="label">메일</label> 
+								<input id="user"type="text" name="semail" class="input" value="${student.semail }">
+								<div id="semailConfirmResult">&nbsp;</div>
+						</div>
+						<div class="group">
+							<label for="user" class="label">성별</label> 
+								<input type="radio" name="sgender" value="m" value="${student.sgender }">남 
+								<input type="radio" name="sgender" value="f" value="${student.sgender }">여
+						</div>
+						<div class="group">
+							<label for="user" class="label">사진</label> 
+								<input id="user" type="file" name="sphoto" class="input">
+						</div>
+						<div class="group">
+							<label for="user" class="label">주소</label> 
+							<input id="user" type="text" name="saddress" class="input" value="${student.saddress }">
+						</div>
+						<div class="group">
+							<input type="submit" class="button" value="수정완료">
+						</div>
+						<div class="hr"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 </body>
-<jsp:include page="../main/footer.jsp"/>
-</html>

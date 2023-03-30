@@ -44,7 +44,7 @@
 				<div class="cont_1">
 					<div class="main_visual">
 						<p>
-							<img src="${conPath }/img/mainImage.png" alt="우리초등학교"
+							<a href=""></a><img src="${conPath }/img/mainImage.png" alt="우리초등학교"
 								width="703px" height="193px">
 							<%-- 									<img src="${conpath }/img/main.jpg" width="703px"
 										height="193px" alt="메인 이미지"> --%>
@@ -128,77 +128,54 @@
 						</div>
 					</div>
 					<!--//우리반시간표-->
-					<!-- 사진게시판 샘플게시판 -->
+						<!-- 알림장 -->
 					<div class="notice_area">
-						<!-- 샘플게시판1 -->
 						<div class="notice m_noti01">
 							<h2>알림장</h2>
 							<ul class="list_box">
-								<li><span class="text"> <a
-										href="/pocheoldong/class/CI22022422976/board/214346/197617404">
-											3월 24일(금) </a>
-								</span> <span class="date">2023.03.24</span></li>
-
-								<li><span class="text"> <a
-										href="/pocheoldong/class/CI22022422976/board/214346/197615309">
-											3월 23일(목) </a>
-								</span> <span class="date">2023.03.23</span></li>
-
-								<li><span class="text"> <a
-										href="/pocheoldong/class/CI22022422976/board/214346/197611792">
-											3월 22일(화) </a>
-								</span> <span class="date">2023.03.21</span></li>
-
-								<li><span class="text"> <a
-										href="/pocheoldong/class/CI22022422976/board/214346/197610321">
-											3월 21일(월) </a>
-								</span> <span class="date">2023.03.21</span></li>
-
-								<li><span class="text"> <a
-										href="/pocheoldong/class/CI22022422976/board/214346/197607968">
-											2023학년도 1학기 상담 일정 안내 </a>
-								</span> <span class="date">2023.03.19</span></li>
-
-								<li><span class="text"> <a
-										href="/pocheoldong/class/CI22022422976/board/214346/197607637">
-											3월 17일(금) (수정) </a>
-								</span> <span class="date">2023.03.17</span></li>
+								<c:forEach var="Nmain" items="${noticeMain }">
+									<li>
+										<span class= "text"> 
+											<a	href="${conPath }/xxx.do/nno=${Nmain.nno}&pageNum=${pageNum}">
+												${Nmain.ntitle } 
+											</a>
+										</span> 
+										<span class="date">
+											<fmt:formatDate value="${Nmain.nrdate }" pattern="yyyy.MM.dd"/>
+											
+										</span></li>
+								</c:forEach>
 							</ul>
-							<a href="/pocheoldong/class/CI22022422976/board/214346"
-								class="btn_more" title="더보기">더보기</a> <a
-								href="/pocheoldong/class/CI22022422976/board/214346"
-								class="btn_more" title="더보기">더보기</a> <a
-								href="/pocheoldong/class/CI22022422976/board/214346"
-								class="btn_more" title="더보기">더보기</a> <a
-								href="/pocheoldong/class/CI22022422976/board/214346"
-								class="btn_more" title="더보기">더보기</a> <a
-								href="/pocheoldong/class/CI22022422976/board/214346"
-								class="btn_more" title="더보기">더보기</a>
+							<a href="${conPath }/NoticeList.do" class="btn_more"
+								title="더보기">더보기</a> <c:if test=""></c:if>
 						</div>
-						<!-- 게시판 -->
+						<!-- 알림장 -->
+						<!-- 학급게시판 -->
 						<div class="notice m_noti02">
 							<h2>학급게시판</h2>
 							<ul class="list_box">
-								<c:if test="${totCnt==0 }">
-									<li><span class="text">등록된 글이 없습니다</span></li>
-								</c:if>
-								<c:if test="${totCnt!=0 }">
-									<c:forEach items="${board }" var="board">
-										<li><span class="text">집에가냐</span></li>
-										<li><span class="text">${board.ftitle }</span></li>
-										<li><span class="text">${board.ftitle }</span></li>
-										<li><span class="text">${board.ftitle }</span></li>
-										<li><span class="text">${board.ftitle }</span></li>
-										<li><span class="text">${board.ftitle }</span></li>
-									</c:forEach>
-								</c:if>
+<%-- 								<c:forEach var="board" items="${FileBoardList }">
+									<li><span class="text">${FileBoardList.ftitle }</span></li>
+								</c:forEach> --%>
+ 								<c:forEach var="Fmain" items="${FileBoardMain }">
+									<li>
+										<span class= "text"> 
+											<a	href="${conPath }/FileBoardContent.do?fno=${Fmain.fno }&pageNum=${pageNum}">
+												${Fmain.ftitle } 
+											</a>
+										</span> 
+										<span class="date">
+											<fmt:formatDate value="${Fmain.frdate }" pattern="yyyy.MM.dd"/>
+											<%-- <a href="${conPath}/FileBoardContent.do?fno=${board.fno }&pageNum=${pageNum}">${board.ftitle }</a> --%>
+										</span></li>
+								</c:forEach> 
 							</ul>
 							<a href="${conPath }/FileBoardList.do" class="btn_more"
 								title="더보기">더보기</a>
 						</div>
-						<!-- //게시판 -->
+						<!-- 게시판 -->
 					</div>
-					<!-- 포토갤러리 -->
+					<!-- 학급앨범 -->
 					<div class="gallery">
 						<h2>학급앨범</h2>
 						<!-- <table>
@@ -211,14 +188,12 @@
 										<td>td</td>
 									</tr>
 								</table> -->
-						<a href="${conPath }/Gallery/GalleryList.do" class="btn_more"
+						<a href="${conPath }/GalleryList.do" class="btn_more"
 							title="더보기">더보기</a>
 					</div>
-					<!-- class : gallery -->
-					<!-- //포토갤러리 -->
+					<!-- 학급앨범 -->
 				</div>
 				<!-- cont_1 -->
-				<!-- // 일반게시판 사진게시판 샘플게시판 -->
 				<div class="cont_2">
 					<!-- class : cont_2 -->
 					<div class="category">

@@ -8,13 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath }/css/style.css" rel="stylesheet">
-	<style>
-		#content_form {
-			height:370px;
-			margin: 130px auto 0px;
-		}
-	</style>
+	<link href="${conPath }/css/login.css" rel="stylesheet">
 </head>
 <body>
 	<c:if test="${not empty  joinResult}">
@@ -34,30 +28,44 @@
 			history.back();
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
-	<div id="content_form">
-		<form action="${conPath }/login.do" method="post">
-			<input type="hidden" name="next" value="${param.next }">
-			<table>
-				<caption>사용자님 로그인</caption>
-				<tr>
-					<th>아이디</th><td><input type="text" name="sid" value="${sid }" required="required"></td>
-				</tr>
-				<tr>
-					<th>비밀번호</th><td><input type="password" name="spw" required="required"></td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<p>
-							<input type="submit" value="로그인" class="btn">
-							<input type="button" value="회원가입" class="btn"
-									onclick="location='${conPath}/joinView.do'">
-						</p>
-					</td>
-				</tr>
-			</table>
-		</form>
+<form action="${conPath }/login.do" method="post">
+	<input type="hidden" name="next" value="${param.next }">
+	<a href="${conPath }/main.do"><img src="${conPath }/img/nomalocl.png" alt="OCL마크"></a>
+	<div class="login-wrap">
+		<div class="login-html">
+		    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">사용자 로그인</label>
+		    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">관리자모드</label>
+		    <div class="login-form">
+		      <div class="sign-in-htm">
+		        <div class="group">
+		          <label for="user" class="label">아이디</label>
+		          <input id="user" type="text" name="sid" value="${sid }" required="required" class="input">
+		        </div>
+		        <div class="group">
+		          <label for="pass" class="label">비밀번호</label>
+		          <input id="pass" type="password" name="spw" class="input" data-type="password" required="required">
+		        </div>
+		        <div class="group">
+		          <input type="submit" class="button" value="로그인">
+		        </div>
+		        <div class="hr"></div>
+		        <div class="foot-lnk">
+		          <a href="${conPath }/joinView.do">아직 회원아 아니신가요?</a>
+		        </div>
+		      </div>
+		    	<div class="sign-up-htm">
+		        <div class="group">
+		          <input type="button" class="button" value="관리자시면 '이곳'을 눌러주세요"
+		          	onclick="location.href='${conPath}/teacherLoginView.do'">
+		        </div>
+		        <div class="hr"></div>
+		        <div class="foot-lnk"><a href = "${conPath }/loginView.do">
+		         관리자가 아니라면 클릭!</a>
+		        </div>
+		      </div>
+		    </div>
+  			</div>
 	</div>
-	<jsp:include page="../main/footer.jsp"/>
+</form>
 </body>
 </html>

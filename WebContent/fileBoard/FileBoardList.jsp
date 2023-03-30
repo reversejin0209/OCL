@@ -9,14 +9,6 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath}/css/css.css" rel="stylesheet">
- 	<style>
-		#content_form {
-			height:470px;
-			margin: 30px auto 0px;
-		}
-		#content_form table tr { height: 10px;}
-	</style> 
-	
 	<style>	
 	.inform_bg{width:700px; border: 1px solid #606060; margin: 0 auto; 
 	margin-top: 50px;}	
@@ -28,32 +20,25 @@
 	.inform_bg ul.noticeLine li:nth-child(2) { margin-bottom: 10px; }
 	.inform_bg ul li.privacy strong { color: #00539f; }
 	body {background-color: #fbf4e5;}
-	
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-<!--  	<script>
-		$(document).ready(function(){
-			$('div').click(function(){
-				var fno = Number($(this).children().eq(0).text()); // 0번째 div안의 있는 text;
-				//alert(fno);
-				if(!isNaN(fno)){
-					location.href = '${conPath}/FileBoardContent.do?fno='+fno+'&pageNum=${pageNum}';
-				}
-			});
-		});
-	</script>  -->
 </head>
+<c:if test= "${empty pageNum}">
+	<script>
+		location.href='${conPath}/fileBoard/FileBoardList.jsp';
+	</script>
+</c:if>
 <c:if test="${ empty student and empty teacher}">
 	<script>
 		alert('해당 페이지의 권한이 없습니다');
-		location.href='${conPath}/main/main.jsp';
+		location.href='${conPath}/main.do';
 	</script>
-</c:if>
-<c:if test="${not empty boardResult }">
-	<script>alert('${boardResult}');</script>
 </c:if>
 <jsp:include page="../main/header.jsp"/>
 <body>
+<c:if test="${not empty boardResult }">
+	<script>alert('${boardResult}');</script>
+</c:if>
 	<div class='inform_bg'>
 	<ul class="noticeLine">
 		<li>학교 수업을 위한 저작물(사진, 글, 그림, 영상 등)은 본 홈페이지에서만 이용 가능하며, <u>이 외의 공간에서 저작물을 공유 또는 게시하는 행위는 <strong>저작권법 위반</strong>에 해당</u>될 수 있습니다.</li>
@@ -89,13 +74,15 @@
 								<c:if test="${i==board.findent }">└─</c:if>
 								<c:if test="${i!=board.findent }"> &nbsp; &nbsp;</c:if>
 							</c:forEach>
-							<%--${board.ftitle } <!-- 글제목에 a태그를 걸지 말고 query로 tr을 클릭하면 상세보기 페이지로 가기 --> --%>
 							<a href="${conPath}/FileBoardContent.do?fno=${board.fno }&pageNum=${pageNum}">${board.ftitle }</a>
 							<c:if test="${not empty board.ffileName }">
 								<img src="https://cdn-icons-png.flaticon.com/512/5088/5088374.png" width="10">
 							</c:if>
 						</div>
-	                    <div class="writer">${board.sname}${board.tname }</div>
+	                    <div class="writer">
+	                   		<c:if test="${not empty board.sname }">${board.sname} [학생]</c:if>
+	                   		<c:if test="${not empty board.tname }">${board.tname} [선생님]</c:if>
+	                    </div>
 	                    <div class="date"><fmt:formatDate value="${board.frdate }" type="date" dateStyle="short"/></div>
 	                    <div class="count">${board.fhit }</div>
 					</c:forEach>
@@ -117,7 +104,7 @@
 			<c:if test="${endPage<pageCnt }">
 			   <a href="${conPath }/FileBoardList.do?pageNum=${endPage+1}" class="bt">다음</a>
 			</c:if>
-            <c:if test="${not empty student or teacher }">
+            <c:if test="${not empty student or not empty teacher }">
             <div class="bt_wrap">
                 <a href="${conPath }/FileBoardWriteView.do" class="on">글쓰기</a>
                 <!--<a href="#">수정</a>-->
@@ -125,10 +112,6 @@
             </c:if>
             </div>
             <c:if test="${empty student or teacher }">
-            <div class="bt_wrap">
-                <a href="${conPath }/loginView.do" class="on">해당 기능에 대한 권한이 없습니다</a>
-                <!--<a href="#">수정</a>-->
-            </div>
             </c:if>
         </div>
     </div>
