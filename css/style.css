@@ -1,10 +1,5 @@
 @charset "utf-8";
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
 html {
     font-size: 10px;
 }
@@ -20,10 +15,10 @@ a {
 
 .board_wrap {
     width: 1000px;
-    margin: 100px auto;
+    margin: 80px auto;
 }
-
 .board_title {
+
     margin-bottom: 30px;
 }
 
@@ -102,8 +97,7 @@ a {
     width: 60%;
     text-align: left;
 }
-
-.board_list .top .title {
+.board_list .top .title, .board_list .email {
     text-align: center;
 }
 

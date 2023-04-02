@@ -5,9 +5,8 @@
 #container {
 	position: relative;
 	background: #fbf4e5;
+	height: 100%;
 	margin: -21px;
-	padding: -21px;
-	width: 100%-4px;
 }
 
 #container:after {
@@ -18,10 +17,11 @@
 
 .main_content {
 	position: relative;
-	z-index: 7;
-	width: 956px;
-	margin: 0 auto;
+	width: 100%;
+	margin: 21px 400px 0 400px;
 	padding: 0 0 70px 0;
+	height: 800px;
+	overflow: hidden;
 }
 
 .main_content:after {
@@ -30,38 +30,10 @@
 	clear: both;
 }
 
-.main_content h1 {
-	width: 956px;
-	height: 50px;
-	padding-top: 140px;
-	background: url(/images/classHome/template5/main/m_visual1.jpg)
-		no-repeat 0 0;
-	text-align: center;
-	margin-bottom: 37px;
-}
-
-.main_content h1 a {
-	font-size: 24px;
-	color: #8a4e22;
-}
-
-.cont_1 {
-	position: relative;
-	float: left;
-	width: 703px;
-	height: 701px;
-}
-
-.cont_1:after {
-	content: "";
-	display: block;
-	clear: both;
-}
-
 .cont_2 {
 	position: absolute;
 	width: 225px;
-	top: 240px;
+	top: 150px;
 	right: 0;
 }
 /* 메인 비주얼 */
@@ -69,13 +41,21 @@
 	width: 100% -4px;
 }
 
+.main_visual img {
+	margin: 50px;
+	width: 700px;
+	height: 250px;
+	float: left;
+}
 /* 카테고리 */
 .category {
-	position: relative;
+	position: fixed;
 	width: 100%;
-	height: 400px;
+	height: 200px;
 	border-radius: 10px;
 	background-color: #fbf4e5;
+	overflow-y: hidden;
+	float: left;
 }
 
 .category h2 {
@@ -89,16 +69,15 @@
 }
 
 .category ul {
-	height: 380px;
+	height: 200px;
 	font-family: '돋움', Dotum;
 	border-radius: 0 0 10px 10px;
 	background: #fff;
-	overflow: hidden;
 	overflow-y: scroll;
 	margin: 0 auto;
 }
 
-.category li {
+.category li { /* 카테고리 li */
 	font-size: 13px;
 	height: 39px;
 	line-height: 39px;
@@ -107,7 +86,7 @@
 	list-style: none;
 }
 
-.category li a {
+.category li a { /* 카테고리 li a */
 	display: inline-block;
 	color: #666;
 	letter-spacing: -0.05em;
@@ -125,15 +104,16 @@
 .schedule {
 	position: absolute;
 	margin: 10px 0 0 0;
-	left: 0;
-	top: 440px;
+	left: 47px;
+	top: 535px;
 	width: 338px;
-	height: 252px;
+	/* height: 300px; */
 	background: #fff;
 	border-radius: 10px;
-	overflow: hidden;
+	overflow-y: auto;
 	background: #f6f5b5;
 	color: #cd853f;
+	clear: both;
 }
 
 .schedule h2 {
@@ -189,6 +169,30 @@
 	color: #666
 }
 
+/* 식단표 */
+.menuplanner {
+    position: absolute;
+    left: 1146px;
+    top: 405px;
+    width: 320px;
+    height: 258px;
+    border-radius: 10px;
+    overflow-y: auto;
+    background: #f6f5b5;
+    color: #cd853f;
+    clear: both;
+    text-align: center;
+}
+.menuplanner .menu a {
+  	color: black;
+}
+.menuplanner .menu ul li {
+  	list-style: none;
+  	text-align: center;
+}
+
+
+/* 게시판, 알림장 */
 .notice_area {
 	width: 768px;
 	margin-top: 20px;
@@ -204,15 +208,16 @@
 	margin-left: 0;
 }
 
-/* 게시판 */
 .notice {
 	width: 338px;
 	height: 205px;
 	position: relative;
-		overflow: hidden;
+	overflow: hidden;
 	overflow-y: scroll;
 	border-radius: 10px;
 	background: #fff;
+	bottom: 40px;
+	left: 48px;
 }
 
 .notice h2 {
@@ -226,7 +231,7 @@
 	line-height: 10px;
 }
 
-.notice .list_box {
+.notice .list_box, .gallery .list_box {
 	overflow: hidden;
 	font-family: '돋움', Dotum;
 	font-size: 12px;
@@ -235,23 +240,22 @@
 	*line-height: 24px
 }
 
-.notice .list_box li {
-
+.notice .list_box li, .gallery .list_box li {
 	overflow: hidden;
 	font-size: 12px;
 	padding-left: 30px;
 	line-height: 24px;
 }
 
-.notice .list_box li a {
+.notice .list_box li a, .gallery .list_box li a {
 	color: #706a5f
 }
 
-.notice .list_box li a:hover {
+.notice .list_box li a:hover, .gallery .list_box li a:hover {
 	text-decoration: underline;
 }
 
-.notice .list_box li span.text {
+.notice .list_box li span.text, .gallery .list_box li span.text {
 	float: left;
 	width: 70%;
 	*width: 60%;
@@ -273,19 +277,19 @@
 	text-indent: -9999em;
 	position: absolute;
 	right: 20px;
-	top: 20px;
-	width: 20px;
-	height: 20px;
-	background: url(../img/category.png) no-repeat;
+	top: 14px;
+	width: 28px;
+	height: 28px;
+	background-position: center;
 }
 
 /* 학급앨범 */
 .gallery {
-	width: 591px;
+	width: 671px;
 	height: 256px;
-	margin-top: 215px;
+	top: 547px;
 	position: absolute;
-	left: 366px;
+	left: 413px;
 	overflow: hidden;
 	border-radius: 10px;
 	background: #fff;
@@ -323,10 +327,6 @@
 	text-decoration: underline
 }
 
-.gallery ul li a .img {
-	display: block;
-}
-
 .gallery ul li a .img img {
 	width: 100%;
 	height: 85px;
@@ -349,8 +349,21 @@
 	text-indent: -9999em;
 	position: absolute;
 	right: 20px;
-	top: 20px;
+	top: 14px;
 	width: 20px;
 	height: 20px;
 	background: url(../img/category.png) no-repeat;
+	display: block;
 }
+/* 급훈 */
+.Class_Instruction { 
+	position:absolute;
+	width: 320px;
+	height: 200px;
+	top: 70px;
+	left: 1160px;
+	background-color : #1b2026;
+	color: #fff; 
+	border-radius: 10px;
+}
+
