@@ -9,6 +9,7 @@ public class SLogoutService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		session.invalidate();	
+		session.invalidate();
+		request.setAttribute("logoutMessage", "로그아웃 되었습니다.");
 	}
 }

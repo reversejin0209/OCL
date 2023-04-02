@@ -260,7 +260,7 @@ public class NoticeDao {
 		return dto;
 	}
 
-	// (7) 앨범등록 수정하기
+	// (7) 등록공지 수정하기
 	public int modifyNotice(NoticeDto dto) {
 		int result = FAIL;
 		Connection conn = null;

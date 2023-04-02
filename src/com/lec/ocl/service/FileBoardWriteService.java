@@ -73,7 +73,8 @@ public class FileBoardWriteService implements Service {
 			try {
 				File serverFile = new File(path+"/"+ffileName);
 				is = new FileInputStream(serverFile);
-				os = new FileOutputStream("D:/JINYOONJIN/source/08_1stProject/ocl/WebContent/fileBoardUp/"+ffileName);
+				//os = new FileOutputStream("D:/JINYOONJIN/source/08_1stProject/ocl/WebContent/fileBoardUp/"+ffileName);
+				os = new FileOutputStream("C:/webPro/08_1stProject/ocl/WebContent/fileBoardUp/"+ffileName);
 				byte[] bs = new byte[(int)serverFile.length()];
 				while(true) {
 					int nByteCnt = is.read(bs);

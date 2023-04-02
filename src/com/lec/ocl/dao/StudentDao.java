@@ -327,4 +327,110 @@ public class StudentDao {
 		}
 		return result;
 	}
+	// (10) 아이디 찾기
+	public int snmcheck(String sname, String semail) {
+		int result = FAIL;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT SID" + 
+				"    FROM STUDENT" + 
+				"    WHERE SNAME = ? AND SEMAIL = ?";
+		try {      
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sname);
+			pstmt.setString(2, semail);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = SUCCESS;
+			}else {
+				result = FAIL;
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return result;
+	}
+	// (11) 비밀번호 찾기
+		public int snmicheck(String sname, String semail, String sid) {
+			int result = FAIL;
+			Connection        conn  = null;
+			PreparedStatement pstmt = null;
+			ResultSet         rs    = null;
+			String sql = "SELECT SPW\r\n" + 
+					"    FROM STUDENT\r\n" + 
+					"    WHERE SNAME = ? AND SEMAIL = ? AND SID = ?";
+			try {      
+				conn = getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, sname);
+				pstmt.setString(2, semail);
+				pstmt.setString(3, sid);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					result = SUCCESS;
+				}else {
+					result = FAIL;
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}finally {
+				try {
+					if(rs    != null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(conn  != null) conn.close();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			return result;
+		}
+	// (12) sname으로 DTO 가져오기
+	public StudentDto getSname(String sname) {
+		StudentDto student = null;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT * FROM STUDENT WHERE SNAME = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sname);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String sid = rs.getString("sid");
+				/* String spw = rs.getString("spw"); */
+				/*
+				 * String snumber = rs.getString("snumber"); Date sbirth = rs.getDate("sbirth");
+				 * Timestamp srdate = rs.getTimestamp("srdate");
+				 */
+				String semail = rs.getString("semail");
+				/*
+				 * String sphoto = rs.getString("sphoto"); String sgender =
+				 * rs.getString("sgender"); String saddress=rs.getString("saddress");
+				 */
+				student = new StudentDto(sid, null, sname, null, null, null, semail, null, null, null);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return student;
+	}
 }

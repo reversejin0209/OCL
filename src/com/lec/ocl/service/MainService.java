@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.ocl.dao.FileBoardDao;
+import com.lec.ocl.dao.GalleryDao;
 import com.lec.ocl.dao.NoticeDao;
 import com.lec.ocl.dto.FileBoardDto;
+import com.lec.ocl.dto.GalleryDto;
 import com.lec.ocl.dto.NoticeDto;
 
 public class MainService implements Service {
@@ -31,6 +33,9 @@ public class MainService implements Service {
 		FileBoardDao Fdao= FileBoardDao.getInstance();
 		ArrayList<FileBoardDto> FileBoardMain = Fdao.listBoard(1, 6);
 		request.setAttribute("FileBoardMain", FileBoardMain);
+		// 학급앨범 리스트 가져와서 setAttribute 
+		GalleryDao Gdao = GalleryDao.getInstance();
+		ArrayList<GalleryDto> GalleryMain = Gdao.listGallery(1, 15);
+		request.setAttribute("GalleryMain", GalleryMain);
 	}
-
 }

@@ -36,25 +36,39 @@ public class FileBoardReplyService implements Service {
 			HttpSession httpSession = request.getSession();
 			StudentDto student = (StudentDto)httpSession.getAttribute("student");
 			TeacherDto teacher = (TeacherDto)httpSession.getAttribute("teacher");
-			if(student==null) {
-				request.setAttribute("boardResult", "로그인 후에만 답글쓰기 가능");
-				return;
-			}
-			String sid = student.getSid();
-			String ftitle = mRequest.getParameter("ftitle");
-			String fcontent = mRequest.getParameter("fcontent");
-			String fip = request.getRemoteAddr();
-			int fgroup = Integer.parseInt(mRequest.getParameter("fgroup"));
-			int fstep = Integer.parseInt(mRequest.getParameter("fstep"));
-			int findent = Integer.parseInt(mRequest.getParameter("findent"));
-			FileBoardDao Fdao = FileBoardDao.getInstance();
-			FileBoardDto dto = new FileBoardDto(0, sid, null, null, null, ftitle, fcontent, ffileName, null, 0, fgroup, fstep, findent, fip);
-			int result = Fdao.reply(dto);
-			// joinMember결과에 따라 적절히 request.setAttribute
-			if(result == Fdao.SUCCESS) { // 답글쓰기 진행
-				request.setAttribute("boardResult", "답글쓰기 성공");
-			}else {
-				request.setAttribute("boardResult", "답글쓰기 실패");
+			if(student!=null) {
+				String sid = student.getSid();
+				String ftitle = mRequest.getParameter("ftitle");
+				String fcontent = mRequest.getParameter("fcontent");
+				String fip = request.getRemoteAddr();
+				int fgroup = Integer.parseInt(mRequest.getParameter("fgroup"));
+				int fstep = Integer.parseInt(mRequest.getParameter("fstep"));
+				int findent = Integer.parseInt(mRequest.getParameter("findent"));
+				FileBoardDao Fdao = FileBoardDao.getInstance();
+				FileBoardDto dto = new FileBoardDto(0, sid, null, null, null, ftitle, fcontent, ffileName, null, 0, fgroup, fstep, findent, fip);
+				int result = Fdao.reply(dto);
+				
+				if(result == Fdao.SUCCESS) { // 답글쓰기 진행
+					request.setAttribute("boardResult", "답글쓰기 성공");
+				}else {
+					request.setAttribute("boardResult", "답글쓰기 실패");
+				}
+			}else if(teacher!=null) {
+				String tid = teacher.getTid();
+				String ftitle = mRequest.getParameter("ftitle");
+				String fcontent = mRequest.getParameter("fcontent");
+				String fip = request.getRemoteAddr();
+				int fgroup = Integer.parseInt(mRequest.getParameter("fgroup"));
+				int fstep = Integer.parseInt(mRequest.getParameter("fstep"));
+				int findent = Integer.parseInt(mRequest.getParameter("findent"));
+				FileBoardDao Fdao = FileBoardDao.getInstance();
+				FileBoardDto dto = new FileBoardDto(0, null, null, tid, null, ftitle, fcontent, ffileName, null, 0, fgroup, fstep, findent, fip);
+				int result = Fdao.reply(dto);
+				if(result == FileBoardDao.SUCCESS) {
+					request.setAttribute("boardResult", "선생 글쓰기 성공");
+				}else {
+					request.setAttribute("boardResult", "사용자 글쓰기 성공");
+				}
 			}
 			request.setAttribute("pageNum", mRequest.getParameter("pageNum"));
 		} catch (IOException e) {
@@ -68,8 +82,8 @@ public class FileBoardReplyService implements Service {
 			try {
 				File serverFile = new File(path+"/"+ffileName);
 				is = new FileInputStream(serverFile);
-				os = new FileOutputStream("D:/JINYOONJIN/source/08_1stProject/ocl/WebContent/fileBoardUp/"+ffileName);
-				//os = new FileOutputStream("D:/webPro/08_1stProject/ocl/WebContent/fileBoardUp/"+ffileName);
+				//os = new FileOutputStream("D:/JINYOONJIN/source/08_1stProject/ocl/WebContent/fileBoardUp/"+ffileName);
+				os = new FileOutputStream("C:/webPro/08_1stProject/ocl/WebContent/fileBoardUp/"+ffileName);
 				byte[] bs = new byte[(int)serverFile.length()];
 				while(true) {
 					int nByteCnt = is.read(bs);

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lec.ocl.service.AllViewService;
 import com.lec.ocl.service.FileBoardContentService;
 import com.lec.ocl.service.FileBoardDeleteService;
 import com.lec.ocl.service.FileBoardListService;
@@ -30,10 +31,12 @@ import com.lec.ocl.service.NoticeListService;
 import com.lec.ocl.service.NoticeModifyService;
 import com.lec.ocl.service.NoticeModifyViewService;
 import com.lec.ocl.service.NoticeWriteService;
+import com.lec.ocl.service.SIDfindService;
 import com.lec.ocl.service.SJoinService;
 import com.lec.ocl.service.SLoginService;
 import com.lec.ocl.service.SLogoutService;
 import com.lec.ocl.service.SModifyService;
+import com.lec.ocl.service.SPWfindService;
 import com.lec.ocl.service.SWithdrawalService;
 import com.lec.ocl.service.SemailConfirmService;
 import com.lec.ocl.service.Service;
@@ -102,6 +105,16 @@ public class controller extends HttpServlet {
 			service = new SWithdrawalService();
 			service.execute(request, response);
 			viewPage = "main.do";
+		}else if(command.equals("/findView.do")) {
+			viewPage = "Student/Findview.jsp";
+		}else if(command.equals("/findID.do")){
+			service = new SIDfindService();
+			service.execute(request, response);
+			viewPage = "findView.do";
+		}else if(command.equals("/findPW.do")) { 
+			service = new SPWfindService();
+			service.execute(request, response); 
+			viewPage = "Student/FindPW.jsp";
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * 
 		 * * * * * * * * * * FileBoard 관련 요청 * * * * * * * * * 
 		 * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -148,6 +161,10 @@ public class controller extends HttpServlet {
 			service = new TLoginService();
 			service.execute(request, response);
 			viewPage = "main.do";
+		}else if(command.equals("/AllView.do")) {
+			service = new AllViewService();
+			service.execute(request, response);
+			viewPage = "Teacher/AllView.jsp";
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * 
 		 * * * * * * * * * * * Notice 관련 요청 * * * * * * * * * 
 		 * * * * * * * * * * * * * * * * * * * * * * * * * * */

@@ -58,8 +58,9 @@ public class GalleryModifyService implements Service {
 			try {
 				File serverFile = new File(path+"/"+gfileName);
 				is = new FileInputStream(serverFile);
-				// os = new FileOutputStream("D:/webPro/08_1stProject/ocl/WebContent/GalleryBoardUp/"+gfileName);
-				os = new FileOutputStream("D:/JINYOONJIN/source/08_1stProject/ocl/WebContent/fileBoardUp/"+gfileName);
+				//os = new FileOutputStream("D:/JINYOONJIN/source/08_1stProject/ocl/WebContent/fileBoardUp/"+gfileName);
+				 os = new FileOutputStream("C:/webPro/08_1stProject/ocl/WebContent/GalleryBoardUp/"+gfileName);
+				 
 				byte[] bs = new byte[(int)serverFile.length()];
 				while(true) {
 					int nByteCnt = is.read(bs);

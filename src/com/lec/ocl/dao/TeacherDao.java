@@ -3,12 +3,14 @@ package com.lec.ocl.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.lec.ocl.dto.StudentDto;
 import com.lec.ocl.dto.TeacherDto;
 
 public class TeacherDao {
@@ -84,3 +86,4 @@ public class TeacherDao {
 		return Teacher;
 	}
 }
+	

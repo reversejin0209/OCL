@@ -39,16 +39,16 @@ public class GalleryWriteService implements Service {
 			if(teacher!=null) {
 				if(teacher!=null) {
 				String tid = teacher.getTid();
-				String gtitle = mRequest.getParameter("ftitle");
-				String gcontent = mRequest.getParameter("fcontent");
+				String gtitle = mRequest.getParameter("gtitle");
+				String gcontent = mRequest.getParameter("gcontent");
 				String gip = request.getRemoteAddr();
 				GalleryDao Gdao = GalleryDao.getInstance();
 				GalleryDto dto = new GalleryDto(0, null, null, tid, null, gtitle, gcontent, gfileName, null, 0, gip);
 				int result = Gdao.writeGallery(dto);
 				if(result == FileBoardDao.SUCCESS) {
-					request.setAttribute("boardResult", "선생 글쓰기 성공");
+					request.setAttribute("GalleryResult", "선생 글쓰기 성공");
 				}else {
-					request.setAttribute("boardResult", "글쓰기 실패");
+					request.setAttribute("GalleryResult", "글쓰기 실패");
 				}
 			}
 		}
@@ -63,7 +63,8 @@ public class GalleryWriteService implements Service {
 			try {
 				File serverFile = new File(path+"/"+gfileName);
 				is = new FileInputStream(serverFile);
-				os = new FileOutputStream("D:/JINYOONJIN/source/08_1stProject/ocl/WebContent/fileBoardUp/"+gfileName);
+				//os = new FileOutputStream("D:/JINYOONJIN/source/08_1stProject/ocl/WebContent/fileBoardUp/"+gfileName);
+				 os = new FileOutputStream("C:/webPro/08_1stProject/ocl/WebContent/GalleryBoardUp/"+gfileName);
 				byte[] bs = new byte[(int)serverFile.length()];
 				while(true) {
 					int nByteCnt = is.read(bs);
