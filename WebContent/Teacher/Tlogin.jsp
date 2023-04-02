@@ -28,7 +28,7 @@
 	</c:if>
 	<c:if test="${not empty student }">
 		<script>
-			alert('사용자 주제에 떼끼'); 
+			alert('이미 회원모드로 들어오셨습니다'); 
 			history.back();
 		</script>
 	</c:if>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+	<script>
+		$(document).ready(function(){
+			$.ajax({
+				url : '3month.json',
+				dataType : 'json',
+				success : function(data){ // data는 객체(id, name, price, description)배열
+					var out = '<tr><th></th><th></th><th></th><th></th>'
+						 + '<th></th><th></th></tr>';
+					$.each(data, function(idx, item){
+						out += '<tr>'
+						out += '<td>' + item.MMEAL_SC_NM + '</td>';
+						out += '<td>' + item.MLSV_YMD +'</td>';
+						out += '<td>' + item.DDISH_NM + '</td>';
+						out += '<td>' + item.ORPLC_INFO + '</td>';
+						out += '<td>' + item.CAL_INFO + '</td>';
+						out += '<td>' + item.NTR_INFO + '</td>';
+						out += '</tr>';
+					}); // each()함수
+					$('table#dataShow').html(out);
+				},
+			});
+		});
+	</script>
+</head>
+<body>
+	<table id="dataShow"></table>
+</body>
+</html>

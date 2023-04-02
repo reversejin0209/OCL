@@ -10,6 +10,9 @@
 	<title>Insert title here</title>
 	<link href="${conPath }/css/login.css" rel="stylesheet">
 </head>
+<style>
+	.login-wrap{min-height:500px;}
+</style>
 <body>
 	<c:if test="${not empty  joinResult}">
 		<script>
@@ -47,6 +50,10 @@
 		        </div>
 		        <div class="group">
 		          <input type="submit" class="button" value="로그인">
+		        </div>
+		        <div class="group">
+		          <input type="button" class="button" value="아이디/비밀번호 찾기"
+		          	onclick="location.href='${conPath}/findID.do'">
 		        </div>
 		        <div class="hr"></div>
 		        <div class="foot-lnk">

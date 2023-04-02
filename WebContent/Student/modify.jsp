@@ -69,7 +69,7 @@
   } );
 </script>
 <style>
-	.login-wrap{min-height:700px;}
+	.login-wrap{height:1000px;}
 </style>
 </head>
 <body>
@@ -143,6 +143,10 @@
 						</div>
 						<div class="group">
 							<input type="submit" class="button" value="수정완료">
+						</div>
+						<div class="group">
+							<input type="button" class="button" value="회원탈퇴"
+							onclick="location.href='${conPath}/withdrawal.do'">
 						</div>
 						<div class="hr"></div>
 					</div>

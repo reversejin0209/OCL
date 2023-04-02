@@ -45,7 +45,7 @@
 	                    </dl>
 	                </div>
 	                <div class="cont">
-	                    <textarea name="ncontent" placeholder="내용 입력"></textarea>
+	                    <textarea name="ncontent" >${Ndto.ncontent }</textarea>
 	                </div>
 	            </div>
 	            <div class="bt_wrap">

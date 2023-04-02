@@ -60,11 +60,11 @@
                 </div>
             </div>
             <div class="bt_wrap">
- 				<c:if test="${not empty teacher}">
+ 				<c:if test="${not empty teacher and empty student}">
 					<button onclick="location='${conPath}/NoticeModifyView.do?nno=${NoticeBoard.nno }&pageNum=${param.pageNum }'">수정</button>
 				</c:if>
-				<c:if test="${not empty teacher}">
-					<button onclick="location='${conPath}/NoticeDelete.do'">삭제</button>
+				<c:if test="${not empty teacher and empty student}">
+					<button onclick="location='${conPath}/NoticeDelete.do?nno=${NoticeBoard.nno }&pageNum=${param.pageNum }'">삭제</button>
 				</c:if>
 				 <button onclick="location='${conPath}/NoticeList.do?pageNum=${param.pageNum }'">목록</button>
             </div>
