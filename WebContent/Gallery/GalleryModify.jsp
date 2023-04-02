@@ -68,7 +68,7 @@
 					<input type="submit" value="수정" class="on">
 					<input type="reset" value="이전" onclick="history.back()">
 					<input type="button" value="목록" 
-						  onclick="location='${conPath}/GalleryList.do?pageNum=${param.pageNum }'">
+						  onclick="location='${conPath}/GalleryList.do'">
 	            </div>
 	        </div>
 	    </div>

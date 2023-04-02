@@ -46,7 +46,7 @@
 	            	<input type="submit" value="글쓰기" class="on">
 	            	<input type="reset" value="초기화">
 	            	<input type="button" value="목록"
-		            	onclick="location.href='${conPath}/Gallery.do'">
+		            	onclick="location.href='${conPath}/GalleryList.do'">
 	            </div>
 	        </div>
 	    </div>

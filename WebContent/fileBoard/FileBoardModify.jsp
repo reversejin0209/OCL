@@ -17,9 +17,9 @@
 <jsp:include page="../main/header.jsp"/>
 <body>
 	<form action="${conPath }/FileBoardModify.do" method="post" enctype="multipart/form-data">
-		<input type="text" name="pageNum" value="${param.pageNum }">
-		<input type="text" name="fno" value="${FileBoard.fno }">
-		<input type="text" name="dbFileName" value="${FileBoard.ffileName }">
+		<input type="hidden" name="pageNum" value="${param.pageNum }">
+		<input type="hidden" name="fno" value="${FileBoard.fno }">
+		<input type="hidden" name="dbFileName" value="${FileBoard.ffileName }">
 	    <div class="board_wrap">
 	        <div class="board_title">
 	            <strong>글수정 게시판</strong>

@@ -64,7 +64,8 @@
     			</p>
     			</address>
 				Copyright© 2023 by 우리초등학교. Allrights Reserved<br><br>
-				<b><img src="${conPath }/img/selectImageView.png" alt="우리초등학교"></b>
+				<b><img src="${conPath }/img/nomalocl.png" alt="OCL마크" width="200px;" height="70px;"></b>
+				
 		</div>
 </footer>
 </body>

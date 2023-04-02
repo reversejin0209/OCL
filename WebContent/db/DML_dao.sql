@@ -40,7 +40,19 @@ SELECT COUNT(*) CNT FROM STUDENT;
 -- (9) 회원 탈퇴
 DELETE FROM STUDENT WHERE SID = 'kim';
 COMMIT;
+SELECT * FROM STUDENT;
+-- (10) 회원 아이디 찾기
+SELECT SID
+    FROM STUDENT
+    WHERE SNAME = '김동길' AND SEMAIL = 'dbswls0209@naver.com';
+    
+-- (11) 비밀번호 찾기
+SELECT SPW
+    FROM STUDENT
+    WHERE SNAME = '김동길' AND SEMAIL = 'dbswls0209@naver.com' AND SID = 'aaa' ;
 
+-- (12) 회원 이름으로 DTO 가져오기
+SELECT * FROM STUDENT WHERE SNAME = '김동길';
 ------------------------------------------------------------------
 ------------------------------  TEACHER에 들어갈 query  ------------------------------
 ------------------------------------------------------------------------------------
@@ -49,7 +61,6 @@ SELECT * FROM TEACHER WHERE TID='dbswls0209' AND TPW='1111';
 
 -- (2) 로그인 후 세션에 넣을 용도 : TEACHER TID로 DTO 가져오기
 SELECT * FROM TEACHER WHERE TID='dbswls0209';
-COMMIT;
 
 ------------------------------------------------------------------------------------
 -----------------------------  FILEBOARD에 들어갈 query  -----------------------------
@@ -193,4 +204,5 @@ UPDATE NOTICE
     WHERE NNO = '1';
 SELECT * FROM NOTICE;
 -- (7) 공지사항 삭제하기
-DELETE FROM NOTICE WHERE NNO='2 ';
+DELETE FROM NOTICE WHERE NNO='5';
+COMMIT;

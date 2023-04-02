@@ -32,23 +32,20 @@
 		alert('${withdrawalResult}');
 	</script>
 </c:if>
+<c:if test="${not empty logoutMessage }">
+	<script>
+		alert('${logoutMessage}');
+	</script>
+</c:if>
 <body>
 	<div id="main_Page">
 		<div id="container">
 			<!-- id : container -->
 			<div class="main_content">
-				<!-- class : main_content -->
-				<h1>
-					<a href="#">서울우리초등학교 : 4학년 3반</a>
-				</h1>
 				<div class="cont_1">
 					<div class="main_visual">
-						<p>
-							<a href=""></a><img src="${conPath }/img/mainImage.png" alt="우리초등학교"
-								width="703px" height="193px">
-							<%-- 									<img src="${conpath }/img/main.jpg" width="703px"
-										height="193px" alt="메인 이미지"> --%>
-						</p>
+						<a href=""></a><img src="${conPath }/img/mainImage.png"
+							alt="우리초등학교">
 					</div>
 					<!--우리반시간표 -->
 					<div class="schedule">
@@ -128,98 +125,106 @@
 						</div>
 					</div>
 					<!--//우리반시간표-->
-						<!-- 알림장 -->
+					<!-- 알림장 -->
 					<div class="notice_area">
 						<div class="notice m_noti01">
 							<h2>알림장</h2>
 							<ul class="list_box">
 								<c:forEach var="Nmain" items="${noticeMain }">
-									<li>
-										<span class= "text"> 
-											<a	href="${conPath }/xxx.do/nno=${Nmain.nno}&pageNum=${pageNum}">
-												${Nmain.ntitle } 
-											</a>
-										</span> 
-										<span class="date">
-											<fmt:formatDate value="${Nmain.nrdate }" pattern="yyyy.MM.dd"/>
-											
-										</span></li>
+									<li><span class="text"> <a
+											href="${conPath }/NoticeContent.do?nno=${Nmain.nno}&pageNum=${pageNum}">
+												${Nmain.ntitle } </a>
+									</span> <span class="date"> <fmt:formatDate
+												value="${Nmain.nrdate }" pattern="yyyy.MM.dd" />
+
+									</span></li>
 								</c:forEach>
 							</ul>
-							<a href="${conPath }/NoticeList.do" class="btn_more"
-								title="더보기">더보기</a> <c:if test=""></c:if>
+							<a href="${conPath }/NoticeList.do" class="btn_more" title="더보기"><img
+								src="${conPath }/img/Noticeimg.png"></a>
+							<c:if test=""></c:if>
 						</div>
 						<!-- 알림장 -->
 						<!-- 학급게시판 -->
 						<div class="notice m_noti02">
 							<h2>학급게시판</h2>
 							<ul class="list_box">
-<%-- 								<c:forEach var="board" items="${FileBoardList }">
-									<li><span class="text">${FileBoardList.ftitle }</span></li>
-								</c:forEach> --%>
- 								<c:forEach var="Fmain" items="${FileBoardMain }">
-									<li>
-										<span class= "text"> 
-											<a	href="${conPath }/FileBoardContent.do?fno=${Fmain.fno }&pageNum=${pageNum}">
-												${Fmain.ftitle } 
-											</a>
-										</span> 
-										<span class="date">
-											<fmt:formatDate value="${Fmain.frdate }" pattern="yyyy.MM.dd"/>
-											<%-- <a href="${conPath}/FileBoardContent.do?fno=${board.fno }&pageNum=${pageNum}">${board.ftitle }</a> --%>
-										</span></li>
-								</c:forEach> 
+								<c:forEach var="Fmain" items="${FileBoardMain }">
+									<li><span class="text"> <a
+											href="${conPath }/FileBoardContent.do?fno=${Fmain.fno }&pageNum=${pageNum}">
+												${Fmain.ftitle } </a>
+									</span> <span class="date"> <fmt:formatDate
+												value="${Fmain.frdate }" pattern="yyyy.MM.dd" />
+									</span></li>
+								</c:forEach>
 							</ul>
 							<a href="${conPath }/FileBoardList.do" class="btn_more"
-								title="더보기">더보기</a>
+								title="더보기"><img src="${conPath }/img/게시판.png"></a>
 						</div>
 						<!-- 게시판 -->
 					</div>
 					<!-- 학급앨범 -->
 					<div class="gallery">
 						<h2>학급앨범</h2>
-						<!-- <table>
-									<tr>
-										tr
-										<th>th</th>
-										<td>td</td>
-										<td>td</td>
-										<td>td</td>
-										<td>td</td>
-									</tr>
-								</table> -->
-						<a href="${conPath }/GalleryList.do" class="btn_more"
-							title="더보기">더보기</a>
-					</div>
-					<!-- 학급앨범 -->
-				</div>
-				<!-- cont_1 -->
-				<div class="cont_2">
-					<!-- class : cont_2 -->
-					<div class="category">
-						<!-- 카테고리 -->
-						<h2>카테고리</h2>
-						<ul>
-							<li><a href="#">알림장</a></li>
-							<li><a href="#">학급공지사항</a></li>
-							<li><a href="#">학급게시판</a></li>
-							<li><a href="#">학급앨범</a></li>
-							<li><a href="#">국어 자료실</a></li>
-							<li><a href="#">영어 자료실</a></li>
-							<li><a href="#">수학 자료실</a></li>
-							<li><a href="#">학사일정</a></li>
-							<li><a href="#">가정학습 신청 게시판</a></li>
-							<li><a href="#">식단표</a></li>
+						<ul class="list_box">
+							<c:forEach var="Gmain" items="${GalleryMain }">
+								<li><span class="text"> <a
+										href="${conPath }/GalleryContent.do?gno=${Gmain.gno }&pageNum=${pageNum}">
+											${Gmain.gtitle } </a>
+								</span> <span class="date"> <fmt:formatDate
+											value="${Gmain.grdate }" pattern="yyyy.MM.dd" />
+								</span></li>
+							</c:forEach>
 						</ul>
+						<a href="${conPath }/GalleryList.do" class="btn_more" title="더보기"><img
+							src="${conPath }/img/카메라.jpg"></a>
 					</div>
-					<!-- //카테고리 -->
 				</div>
-				<!-- class : cont_2 -->
+				<!-- 학급앨범 -->
 			</div>
-			<!-- class : main_content -->
+			<!-- cont_1 -->
+			<div class="Class_Instruction" style="text-align: center;">
+				<table>
+					<tr>
+						<th>급훈</th>
+					</tr>
+					<tr>
+						<td><h1>중요한건 꺾이지 않는 마음</h1></td>
+					</tr>
+				</table>
+			</div>
 		</div>
-		<!-- id : container -->
+		<!--우리반시간표 -->
+		<div class="menuplanner">
+			<h2>식단표</h2>
+			<div class="menu">
+				<ul>
+					<li><h1><a href="MenuPlanner/5month/5month.html">5월 식단표</a></h1></li>
+					<li><h1><a href="MenuPlanner/4month/4month.html">4월 식단표</a></h1></li>
+					<li><h1><a href="MenuPlanner/3month/3month.html">3월 식단표</a></h1></li>
+				</ul>
+			</div>
+		</div>
+		<div class="cont_2">
+			<!-- class : cont_2 -->
+			<div class="category">
+				<!-- 카테고리 -->
+				<h2>카테고리</h2>
+				<ul>
+					<li><a href="${conPath }/NoticeList.do">알림장</a></li>
+					<li><a href="${conPath }/FileBoardList.do">학급게시판</a></li>
+					<li><a href="${conPath }/GalleryList.do">학급앨범</a></li>
+					<li><a href="#">식단표</a></li>
+					<li><a href="#">국어 자료실</a></li>
+					<li><a href="#">영어 자료실</a></li>
+					<li><a href="#">수학 자료실</a></li>
+				</ul>
+			</div>
+			<!-- //카테고리 -->
+		</div>
+		<!-- class : cont_2 -->
 	</div>
+	<!-- id : main_Page -->
 </body>
 <jsp:include page="../main/footer.jsp" />
 </html>

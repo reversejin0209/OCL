@@ -91,7 +91,7 @@
 				<c:if test="${student.sid eq FileBoard.sid or not empty teacher}">
 					<button onclick="location='${conPath}/FileBoardDelete.do?fgroup=${FileBoard.fgroup }&fstep=${FileBoard.fstep }&findent=${FileBoard.findent }&pageNum=${param.pageNum }'">삭제</button>
 				</c:if>
-				<c:if test="${not empty student or empty teacher}">
+				<c:if test="${not empty student or not empty teacher}">
 				 	<button onclick="location='${conPath}/FileBoardReplyView.do?fno=${FileBoard.fno }&pageNum=${param.pageNum }'">답변</button>
 				 </c:if>
 				 <button onclick="location='${conPath}/FileBoardList.do?pageNum=${param.pageNum }'">목록</button>

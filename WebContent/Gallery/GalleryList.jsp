@@ -16,7 +16,7 @@
 </head>
 <c:if test= "${empty pageNum}">
 	<script>
-		location.href='${conPath}/GalleryList.do';
+		location.href='${conPath}/Gallery/GalleryList.jsp';
 	</script>
 </c:if>
 <c:if test="${ empty student and empty teacher}">

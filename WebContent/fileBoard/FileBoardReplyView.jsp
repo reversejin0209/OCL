@@ -10,10 +10,6 @@
 	<title>Insert title here</title>
 	<link href="${conPath }/css/style.css" rel="stylesheet">
 	<style>
-		#content_form {
-			height:400px;
-			margin: 100px auto 0px;
-		}
 		body {background-color: #fbf4e5}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -54,10 +50,9 @@
 	                    <dl>
 	                        <dt>작성자</dt>
 	                        <dd>						
-	                        	<input type="text" required="required"
-								value="<c:if test="${not empty student.sname }">[학생님] ${student.sname } (${student.sid})</c:if>
-										<c:if test="${not empty teacher.tname }">[선생님] ${teacher.tname } (${teacher.tid})</c:if>
-										"readonly="readonly">
+	                        	<input type="text" required="required" 
+	                        	value="<c:if test="${not empty student.sname }">[학생님] ${student.sname } (${student.sid})</c:if><c:if test="${not empty teacher.tname }">[선생님] ${teacher.tname } (${teacher.tid})</c:if>"
+	                        			readonly="readonly">
 							</dd>
 	                    </dl>
 	                    <dl>

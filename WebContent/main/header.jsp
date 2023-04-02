@@ -27,7 +27,7 @@ header li {
 	list-style: none;
 }
 
-header .gnb {
+header .gnb {     
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -60,7 +60,7 @@ header .gnb ul li:nth-child(3) {
 }
 
 header .gnb ul li:nth-child(4) {
-	background-color: #0095da;
+	background-color: #1b2026;
 }
 
 header .gnb a {
@@ -151,7 +151,7 @@ header .subMenu>li>a:hover {
 		<c:if test="${empty student and empty teacher}">
 			<%-- 로그인 전 화면 --%>
 			<div class="gnb">
-				<img src="${conPath }/img/selectImageView.png" alt="우리초등학교">
+				<a href="${conPath }/main.do"><img src="${conPath }/img/nomalocl.png" alt="OCL마크" width="200px;" height="70px;"></a>
 				<nav class="header_nav">
 					<ul>
 						<li><a href="${conPath }/main.do">홈페이지</a></li>
@@ -169,25 +169,26 @@ header .subMenu>li>a:hover {
 								<li><a href="#">학교상징 및 교가</a></li>
 							</ul>
 					</a></li>
-					<li><a href="#">교육마당
+					<li><a href="#">학교정보
 							<ul class="subMenu">
-								<li><a href="#">메뉴2-1</a></li>
-								<li><a href="#">메뉴2-2</a></li>
-								<li><a href="#">메뉴2-3</a></li>
+								<li><a href="https://map.naver.com/v5/search/%EC%96%91%EC%84%9C%EC%A4%91%ED%95%99%EA%B5%90?c=15,0,0,0,dh" target="_blank">찾아오시는 길</a></li>
+				                <li><a href="https://copy112.kcopa.or.kr/"target="_blank">저작권신고</a></li>
+				                <li><a href="https://yangseo.sen.ms.kr/dggb/module/policy/selectPolicyDetail.do?policyTypeCode=PLC003&menuNo=74145" target="_blank">서비스이용약관</a></li>
+				                <li><a href="https://www.moe.go.kr/sub/infoRenew.do?m=070102&page=070102&s=moe" target="_blank">개인정보처리방침</a></li>
 							</ul>
 					</a></li>
 					<li><a href="#">학습마당
 							<ul class="subMenu">
-								<li><a href="#">메뉴3-1</a></li>
-								<li><a href="#">메뉴3-2</a></li>
-								<li><a href="#">메뉴3-3</a></li>
+								<li><a href="#">수학 게시판</a></li>
+								<li><a href="#">국어 게시판</a></li>
+								<li><a href="#">영어 게시판</a></li>
 							</ul>
 					</a></li>
 					<li><a href="#">열린마당
 							<ul class="subMenu">
-								<li><a href="#">메뉴4-1</a></li>
-								<li><a href="#">메뉴4-2</a></li>
-								<li><a href="#">메뉴4-3</a></li>
+								<li><a href="${conPath }/NoticeList.do">알림장</a></li>
+								<li><a href="${conPath }/FileBoardList.do">학급게시판</a></li>
+								<li><a href="${conPath }/GalleryList.do">학급앨범</a></li>
 							</ul>
 					</a></li>
 				</ul>
@@ -196,7 +197,7 @@ header .subMenu>li>a:hover {
 		<c:if test="${not empty student and empty teacher}">
 			<%-- 사용자 모드 로그인 화면--%>
 			<div class="gnb">
-				<img src="${conPath }/img/selectImageView.png" alt="우리초등학교">
+				<a href="${conPath }/main.do"><img src="${conPath }/img/nomalocl.png" alt="OCL마크" width="200px;" height="70px;"></a>
 				<nav class="header_nav">
 					<ul>
 						<li><a href="${conPath }/main.do">홈페이지</a></li>
@@ -216,25 +217,26 @@ header .subMenu>li>a:hover {
 								<li><a href="#">학교상징 및 교가</a></li>
 							</ul>
 					</a></li>
-					<li><a href="#">교육마당
+					<li><a href="#">학교정보
 							<ul class="subMenu">
-								<li><a href="#">메뉴2-1</a></li>
-								<li><a href="#">메뉴2-2</a></li>
-								<li><a href="#">메뉴2-3</a></li>
+								<li><a href="https://map.naver.com/v5/search/%EC%96%91%EC%84%9C%EC%A4%91%ED%95%99%EA%B5%90?c=15,0,0,0,dh" target="_blank">찾아오시는 길</a></li>
+				                <li><a href="https://copy112.kcopa.or.kr/"target="_blank">저작권신고</a></li>
+				                <li><a href="https://yangseo.sen.ms.kr/dggb/module/policy/selectPolicyDetail.do?policyTypeCode=PLC003&menuNo=74145" target="_blank">서비스이용약관</a></li>
+				                <li><a href="https://www.moe.go.kr/sub/infoRenew.do?m=070102&page=070102&s=moe" target="_blank">개인정보처리방침</a></li>
 							</ul>
 					</a></li>
 					<li><a href="#">학습마당
 							<ul class="subMenu">
-								<li><a href="#">메뉴3-1</a></li>
-								<li><a href="#">메뉴3-2</a></li>
-								<li><a href="#">메뉴3-3</a></li>
+								<li><a href="#">수학 게시판</a></li>
+								<li><a href="#">국어 게시판</a></li>
+								<li><a href="#">영어 게시판</a></li>
 							</ul>
 					</a></li>
 					<li><a href="#">열린마당
 							<ul class="subMenu">
-								<li><a href="#">메뉴4-1</a></li>
-								<li><a href="#">메뉴4-2</a></li>
-								<li><a href="#">메뉴4-3</a></li>
+								<li><a href="${conPath }/NoticeList.do">알림장</a></li>
+								<li><a href="${conPath }/FileBoardList.do">학급게시판</a></li>
+								<li><a href="${conPath }/GalleryList.do">학급앨범</a></li>
 							</ul>
 					</a></li>
 				</ul>
@@ -243,7 +245,7 @@ header .subMenu>li>a:hover {
 		<c:if test="${empty student and not empty teacher}">
 			<%-- 관리자 모드 로그인 화면--%>
 			<div class="gnb">
-				<img src="${conPath }/img/selectImageView.png" alt="우리초등학교">
+				<a href="${conPath }/main.do"><img src="${conPath }/img/nomalocl.png" alt="OCL마크" width="200px;" height="70px;"></a>
 				<nav class="header_nav">
 					<ul>
 						<li><a href="${conPath }/main.do">홈페이지</a></li>
@@ -262,25 +264,26 @@ header .subMenu>li>a:hover {
 								<li><a href="#">학교상징 및 교가</a></li>
 							</ul>
 					</a></li>
-					<li><a href="#">교육마당
+					<li><a href="#">학교정보
 							<ul class="subMenu">
-								<li><a href="#">메뉴2-1</a></li>
-								<li><a href="#">메뉴2-2</a></li>
-								<li><a href="#">메뉴2-3</a></li>
+								<li><a href="https://map.naver.com/v5/search/%EC%96%91%EC%84%9C%EC%A4%91%ED%95%99%EA%B5%90?c=15,0,0,0,dh" target="_blank">찾아오시는 길</a></li>
+				                <li><a href="https://copy112.kcopa.or.kr/"target="_blank">저작권신고</a></li>
+				                <li><a href="https://yangseo.sen.ms.kr/dggb/module/policy/selectPolicyDetail.do?policyTypeCode=PLC003&menuNo=74145" target="_blank">서비스이용약관</a></li>
+				                <li><a href="https://www.moe.go.kr/sub/infoRenew.do?m=070102&page=070102&s=moe" target="_blank">개인정보처리방침</a></li>
 							</ul>
 					</a></li>
 					<li><a href="#">학습마당
 							<ul class="subMenu">
-								<li><a href="#">메뉴3-1</a></li>
-								<li><a href="#">메뉴3-2</a></li>
-								<li><a href="#">메뉴3-3</a></li>
+								<li><a href="#">수학 게시판</a></li>
+								<li><a href="#">국어 게시판</a></li>
+								<li><a href="#">영어 게시판</a></li>
 							</ul>
 					</a></li>
 					<li><a href="#">열린마당
 							<ul class="subMenu">
-								<li><a href="#">메뉴4-1</a></li>
-								<li><a href="#">메뉴4-2</a></li>
-								<li><a href="#">메뉴4-3</a></li>
+								<li><a href="${conPath }/NoticeList.do">알림장</a></li>
+								<li><a href="${conPath }/FileBoardList.do">학급게시판</a></li>
+								<li><a href="${conPath }/GalleryList.do">학급앨범</a></li>
 							</ul>
 					</a></li>
 				</ul>

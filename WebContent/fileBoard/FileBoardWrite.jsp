@@ -16,11 +16,6 @@
 </head>
 <jsp:include page="../main/header.jsp"/>
 <body>
-<%--  	<c:if test="${empty student or empty teacher}">
-		<script>
-			location.href='${conPath}/logeinView.do?next=FileboardWriteView.do';
-		</script>
-	</c:if> --%>
 	<form action="${conPath }/FileBoardWrite.do" method="post" enctype="multipart/form-data">
 	    <div class="board_wrap">
 	        <div class="board_title">
